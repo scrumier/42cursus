@@ -6,7 +6,7 @@
 #    By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 13:33:37 by scrumier          #+#    #+#              #
-#    Updated: 2023/11/16 12:24:57 by scrumier         ###   ########.fr        #
+#    Updated: 2023/11/22 13:16:44 by scrumier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,9 @@ BONUS            =    ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
 					ft_lstmap.c ft_lstnew.c ft_lstsize.c
 BONUS_OBJS        = $(BONUS:.c=.o)
 
-CC                = gcc
+CC                = cc
 RM                = rm -f
-CFLAGS            = -Wall -Wextra -Werror -I.
+CFLAGS            = -Wall -Wextra -Werror
 
 NAME            = libft.a
 

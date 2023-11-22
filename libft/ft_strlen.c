@@ -6,18 +6,18 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 15:30:45 by scrumier          #+#    #+#             */
-/*   Updated: 2023/11/16 13:28:10 by scrumier         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:30:05 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *str)
+int	ft_strlen(const char *s)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != 0)
+	while (s[i] != 0)
 		i++;
 	return (i);
 }

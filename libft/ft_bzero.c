@@ -6,13 +6,13 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:31:52 by scrumier          #+#    #+#             */
-/*   Updated: 2023/11/16 12:31:14 by scrumier         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:21:44 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *b, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	ft_memset((void *)b, 0, n);
+	ft_memset((void *)s, 0, n);
 }
