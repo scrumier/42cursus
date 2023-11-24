@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:28:26 by scrumier          #+#    #+#             */
-/*   Updated: 2023/11/16 13:29:00 by scrumier         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:56:16 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
+	long long int	i;
 
 	i = 0;
 	while (s[i])

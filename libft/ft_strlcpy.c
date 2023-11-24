@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 15:30:47 by scrumier          #+#    #+#             */
-/*   Updated: 2023/11/22 13:29:50 by scrumier         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:19:21 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	unsigned long int	srclen;
+	size_t	srclen;
 
 	srclen = ft_strlen((char *)src);
 	if (srclen + 1 < size)

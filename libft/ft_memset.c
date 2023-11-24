@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:33:15 by scrumier          #+#    #+#             */
-/*   Updated: 2023/11/16 13:09:40 by scrumier         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:01:12 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_memset(void *s, int c, size_t n)
 {
 	unsigned char	*str;
 	unsigned char	fill;
-	int				i;
+	size_t			i;
 
 	str = s;
 	fill = c;

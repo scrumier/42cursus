@@ -6,14 +6,13 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:33:33 by scrumier          #+#    #+#             */
-/*   Updated: 2023/11/22 13:34:34 by scrumier         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:05:45 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stddef.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
@@ -23,7 +22,7 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 
-}					t_list;
+}				t_list;
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
@@ -32,7 +31,7 @@ int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
-int		ft_strlen(const char *str);
+size_t	ft_strlen(const char *str);
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *b, size_t n);
 int		ft_atoi(const char *str);

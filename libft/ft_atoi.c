@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:31:46 by scrumier          #+#    #+#             */
-/*   Updated: 2023/11/22 13:21:45 by scrumier         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:00:02 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_atoi(const char *nptr)
 {
-	int	result;
-	int	sign;
+	long int	result;
+	int			sign;
 
 	sign = 1;
 	result = 0;

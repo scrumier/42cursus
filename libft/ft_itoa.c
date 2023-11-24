@@ -6,15 +6,15 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:32:31 by scrumier          #+#    #+#             */
-/*   Updated: 2023/11/21 09:58:07 by scrumier         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:59:44 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	nbr_len(int nb)
+static size_t	nbr_len(int nb)
 {
-	int	len;
+	size_t	len;
 
 	len = 0;
 	if (nb <= 0)
@@ -29,8 +29,8 @@ static int	nbr_len(int nb)
 
 char	*ft_itoa(int n)
 {
-	int		i;
-	char	*str;
+	size_t		i;
+	char		*str;
 
 	i = nbr_len(n);
 	str = malloc(sizeof(char) * (i + 1));
