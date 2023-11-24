@@ -6,11 +6,9 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:32:24 by scrumier          #+#    #+#             */
-/*   Updated: 2023/11/16 12:35:13 by scrumier         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:49:25 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 int	ft_isdigit(int c)
 {

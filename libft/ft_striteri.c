@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 14:17:41 by scrumier          #+#    #+#             */
-/*   Updated: 2023/11/16 13:25:32 by scrumier         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:16:41 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (!s || !f)

@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:29:11 by scrumier          #+#    #+#             */
-/*   Updated: 2023/11/16 13:29:26 by scrumier         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:56:49 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*str;
-	int		start;
-	int		end;
+	char			*str;
+	long long int	start;
+	long long int	end;
 
 	if (!s1 || !set)
 		return (NULL);

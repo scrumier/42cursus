@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 15:30:51 by scrumier          #+#    #+#             */
-/*   Updated: 2023/11/16 13:26:33 by scrumier         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:17:32 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
 	str = (char *)malloc(
 			sizeof(*s1) * (ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1));
 	if (!str)

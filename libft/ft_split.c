@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:33:28 by scrumier          #+#    #+#             */
-/*   Updated: 2023/11/21 13:24:04 by scrumier         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:50:18 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@ static char	**ft_free_array(char **array, size_t nb_wrd)
 static size_t	ft_count_wrds(char const *s, char c)
 {
 	size_t	nb_wrd;
-	int		in_wrd;
+	size_t	sep_wrd;
 
+	sep_wrd = 0;
 	nb_wrd = 0;
-	in_wrd = 0;
 	while (*s)
 	{
-		if (*s != c && !in_wrd)
+		if (*s != c && !sep_wrd)
 		{
-			in_wrd = 1;
+			sep_wrd = 1;
 			nb_wrd++;
 		}
-		else if (*s == c && in_wrd)
-			in_wrd = 0;
+		else if (*s == c && sep_wrd)
+			sep_wrd = 0;
 		s++;
 	}
 	return (nb_wrd);
@@ -66,9 +66,10 @@ char	**ft_split(char const *s, char c)
 	char	**list;
 	size_t	i;
 
-	list = (char **)malloc((ft_count_wrds(s, c) + 1)
-			* sizeof(char *));
-	if (!s || !list)
+	if (!s)
+		return (NULL);
+	list = ft_calloc(ft_count_wrds(s, c) + 1, sizeof(char *));
+	if (!list)
 		return (NULL);
 	i = 0;
 	while (*s)
@@ -84,6 +85,5 @@ char	**ft_split(char const *s, char c)
 			s += len;
 		}
 	}
-	list[i] = 0;
 	return (list);
 }
