@@ -6,37 +6,54 @@
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:11:51 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2023/11/21 11:57:21 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2023/11/25 19:21:52 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_int(int n)
+static int	ft_handle_negative(int *n)
 {
 	int	count;
 
 	count = 0;
-	if (n == -2147483648)
+	if (*n == 0)
+		return (ft_print_char('0'));
+	if (*n == -2147483648)
 	{
 		if (write(1, "-2147483648", 11) < 0)
 			return (-1);
-		count += 11;
-		return (count);
+		*n = 0;
+		return (11);
 	}
-	if (n < 0)
+	if (*n < 0)
 	{
 		if (ft_print_char('-') < 0)
 			return (-1);
-		n = -n;
-		count++;
+		*n *= -1;
+		count = 1;
 	}
+	return (count);
+}
+
+int	ft_print_int(int n)
+{
+	int	count;
+	int	result;
+
+	count = ft_handle_negative(&n);
+	if (count < 0)
+		return (-1);
+	if (n == 0)
+		return (count);
 	if (n >= 10)
 	{
-		count += ft_print_int(n / 10);
+		result = ft_print_int(n / 10);
+		if (result < 0)
+			return (-1);
+		count += result;
 	}
 	if (ft_print_char(n % 10 + '0') < 0)
 		return (-1);
-	count++;
-	return (count);
+	return (count + 1);
 }

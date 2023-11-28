@@ -6,7 +6,7 @@
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:42:13 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2023/11/22 13:51:07 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2023/11/25 17:06:59 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,29 @@ static int	format_specifier(va_list *args, char format)
 	else if (format == '%')
 		count = (ft_print_char('%'));
 	else
-		count = (-1);
+		count = ft_print_char(format);
+	return (count);
+}
+
+static int	process_format(const char **format, va_list *args)
+{
+	int	count;
+	int	tmp;
+
+	count = 0;
+	if (**format == '%')
+	{
+		(*format)++;
+		tmp = format_specifier(args, **format);
+		if (tmp < 0)
+			return (-1);
+		count += tmp;
+	}
+	else if (ft_print_char(**format) < 0)
+		return (-1);
+	else
+		count++;
+	(*format)++;
 	return (count);
 }
 
@@ -52,19 +74,13 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (*format)
 	{
-		if (*format == '%')
+		tmp = process_format(&format, &args);
+		if (tmp < 0)
 		{
-			format++;
-			tmp = format_specifier(&args, *format);
-			if (tmp < 0)
-				return (-1);
-			count += tmp;
-		}
-		else if (ft_print_char(*format) < 0)
+			va_end(args);
 			return (-1);
-		else
-			count++;
-		format++;
+		}
+		count += tmp;
 	}
 	va_end(args);
 	return (count);
