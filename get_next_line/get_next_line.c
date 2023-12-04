@@ -6,48 +6,112 @@
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 12:36:49 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2023/11/28 15:04:21 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2023/12/01 10:04:37 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*extract_line(char *buff)
+char	*ft_free(char *buffer, char *buf)
 {
-	int		i;
-	int		len;
+	char	*temp;
+
+	temp = ft_strjoin(buffer, buf);
+	free(buffer);
+	return (temp);
+}
+
+char	*next_line(char *buffer)
+{
 	char	*line;
-	size_t	check;
+	int		i;
+	int		j;
 
 	i = 0;
-	while (buff[i] && buff[i] != '\n')
+	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	len = i;
-	if (buff[i] == '\n')
-		len++;
-	line = malloc(sizeof(char) * (len + 1));
+	if (!buffer[i])
+	{
+		free(buffer);
+		return (NULL);
+	}
+	line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
+	if (!line)
+	{
+		free(buffer);
+		return (NULL);
+	}
+	i++;
+	j = 0;
+	while (buffer[i])
+		line[j++] = buffer[i++];
+	free(buffer);
+	return (line);
+}
+
+char	*extract_line(char *buffer)
+{
+	char	*line;
+	int		i;
+
+	if (!buffer[0])
+		return (NULL);
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	line = ft_calloc(i + 2, sizeof(char));
 	if (!line)
 		return (NULL);
-	check = ft_strlcpy(line, buff, len);
-	if (check <= 0)
-		return (NULL);
-	line[len] = '\0';
-	ft_memmove(buff, buff + len, ft_strlen(buff) - len + 1);
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+	{
+		line[i] = buffer[i];
+		i++;
+	}
+	if (buffer[i] && buffer[i] == '\n')
+		line[i++] = '\n';
 	return (line);
+}
+
+char	*read_file(int fd, char *result)
+{
+	char	*buff;
+	int		readed;
+
+	if (!result)
+		result = ft_calloc(1, 1);
+	buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!buff)
+		return (NULL);
+	readed = 1;
+	while (readed > 0)
+	{
+		readed = read(fd, buff, BUFFER_SIZE);
+		if (readed == -1)
+		{
+			free(buff);
+			return (NULL);
+		}
+		buff[readed] = 0;
+		result = ft_free(result, buff);
+		if (ft_strchr(buff, '\n'))
+			break ;
+	}
+	free(buff);
+	return (result);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE+ 1];
-	char		*str;
-	ssize_t		readed;
+	static char	*buffer;
+	char		*line;
 
-	if (!fd)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	readed = read(fd, buffer, sizeof(char) * (BUFFER_SIZE - 1));
-	if (readed <= 0)
+	buffer = read_file(fd, buffer);
+	if (!buffer)
 		return (NULL);
-	buffer[BUFFER_SIZE] = '\0';
-	str = extract_line(buffer);
-	return (str);
+	line = extract_line(buffer);
+	buffer = next_line(buffer);
+	return (line);
 }

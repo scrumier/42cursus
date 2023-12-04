@@ -6,55 +6,89 @@
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 12:36:53 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2023/11/28 14:52:09 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2023/12/01 09:44:06 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	srclen;
+	char	*str;
+	size_t	i;
+	size_t	j;
 
-	srclen = ft_strlen((char *)src);
-	if (srclen + 1 < size)
+	i = 0;
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	str = (char *)malloc(
+			sizeof(*s1) * (ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1));
+	if (!str)
+		return (NULL);
+	while (s1[i])
 	{
-		ft_memcpy(dst, src, srclen + 1);
+		str[j++] = s1[i];
+		i++;
 	}
-	else if (size != 0)
+	i = 0;
+	while (s2[i])
 	{
-		ft_memcpy(dst, src, size - 1);
-		dst[size - 1] = '\0';
+		str[j++] = s2[i];
+		i++;
 	}
-	return (srclen);
+	str[j] = 0;
+	return (str);
 }
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+char	*ft_strchr(const char *s, int c)
 {
-	unsigned char	*from;
-	unsigned char	*to;
-	size_t			i;
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if (*s == (char)c)
+		return ((char *)s);
+	return (NULL);
+}
 
-	from = (unsigned char *)src;
-	to = (unsigned char *)dest;
-	if (from == to || n == 0)
-		return (dest);
-	if (to > from)
+void	ft_bzero(void *s, size_t n)
+{
+	char	*str;
+	size_t	i;
+
+	str = (char *)s;
+	i = 0;
+	while (i < n)
 	{
-		i = n;
-		while (i-- > 0)
-			to[i] = from[i];
+		str[i] = '\0';
+		i++;
 	}
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*target;
+	size_t	max;
+
+	max = (size_t) - 1;
+	if (size == 0 || nmemb == 0)
+	{
+		target = malloc(0);
+		if (target == NULL)
+			return (NULL);
+		return (target);
+	}
+	else if (nmemb >= max / size)
+		return (NULL);
 	else
-	{
-		i = 0;
-		while (i < n)
-		{
-			to[i] = from[i];
-			i++;
-		}
-	}
-	return (dest);
+		target = malloc(nmemb * size);
+	if (target == NULL)
+		return (NULL);
+	ft_bzero(target, nmemb * size);
+	return (target);
 }
 
 size_t	ft_strlen(const char *s)
