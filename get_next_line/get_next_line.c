@@ -6,7 +6,7 @@
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 12:36:49 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2023/12/01 10:04:37 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2023/12/04 11:23:30 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*extract_line(char *buffer)
 	char	*line;
 	int		i;
 
-	if (!buffer[0])
+	if (!buffer[0] || !buffer)
 		return (NULL);
 	i = 0;
 	while (buffer[i] && buffer[i] != '\n')
