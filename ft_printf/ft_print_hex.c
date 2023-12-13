@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:32:27 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2023/11/21 11:09:04 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2023/12/13 12:38:15 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static int	ft_putchar(char c)
-{
-	if (write(1, &c, 1) < 0)
-		return (-1);
-	return (1);
-}
 
 static int	ft_puthex_recursive(unsigned int num, const char *base, int *count)
 {
@@ -26,7 +19,7 @@ static int	ft_puthex_recursive(unsigned int num, const char *base, int *count)
 		if (ft_puthex_recursive(num / 16, base, count) < 0)
 			return (-1);
 	}
-	if (ft_putchar(base[num % 16]) < 0)
+	if (ft_printchar(base[num % 16]) < 0)
 		return (-1);
 	(*count)++;
 	return (1);

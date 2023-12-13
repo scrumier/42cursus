@@ -39,9 +39,9 @@ int	ft_print_ptr(void *ptr)
 	addr = (unsigned long)ptr;
 	if (!ptr)
 	{
-		if (write(1, "0x0", 3) < 0)
+		if (write(1, "(nil)", 5) < 0)
 			return (-1);
-		return (3);
+		return (5);
 	}
 	if (write(1, "0x", 2) < 0)
 		return (-1);

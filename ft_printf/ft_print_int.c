@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:11:51 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2023/11/25 19:21:52 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2023/12/13 12:41:54 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_handle_negative(int *n)
+static int	ft_negative(int *n)
 {
 	int	count;
 
@@ -41,7 +41,7 @@ int	ft_print_int(int n)
 	int	count;
 	int	result;
 
-	count = ft_handle_negative(&n);
+	count = ft_negative(&n);
 	if (count < 0)
 		return (-1);
 	if (n == 0)
