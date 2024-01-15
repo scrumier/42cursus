@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   put_index.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/15 14:42:09 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/01/15 12:17:36 by scrumier         ###   ########.fr       */
+/*   Created: 2024/01/15 11:46:55 by scrumier          #+#    #+#             */
+/*   Updated: 2024/01/15 12:17:37 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	main(int argc, char **argv)
+int put_index_bis(t_list **list)
 {
-	t_list	*list_a;
+    int i;
 
-	list_a = process(argc, argv);
-	if (!list_a || checkdup(list_a) == -1)
-	{
-		free_list(&list_a);
-		ft_error();
-	}
-	if (!ft_checksorted(list_a))
-		sort(&list_a);
-	free_list(&list_a);
-	return (0);
+    i = 1;
+    while ((*list)->next)
+    {
+        (*list)->index = i;
+        i++;
+        *list = (*list)->next;
+    }
+    (*list)->index = i;
+}
+
+int put_index(t_list **list_a, t_list **list_b)
+{
+    put_index_bis(list_a);
+    put_index_bis(list_b);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 13:56:10 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/01/11 15:07:50 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/01/15 11:32:40 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,19 @@ void	free_list(t_list **list)
 		free(*list);
 		*list = tmp;
 	}
+}
+
+void	ft_freestr(char **lst)
+{
+	char	*str;
+
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		str = *lst;
+		lst++;
+		free(str);
+	}
+	*lst = NULL;
 }

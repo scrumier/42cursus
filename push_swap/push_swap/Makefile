@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+         #
+#    By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/10 09:32:51 by sonamcrumie       #+#    #+#              #
-#    Updated: 2024/01/11 14:34:49 by sonamcrumie      ###   ########.fr        #
+#    Updated: 2024/01/15 11:54:33 by scrumier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ OBJ_DIR = obj/
 BONUS = checker
 SRC_DIR = srcs/
 
-SRC_1 =	push_swap.c argv_checker.c dup_sort_checker.c \
-		instructions.c sort.c utils.c \
+SRC_1 =	push_swap.c argv_checker.c dup_sort_checker.c put_index.c\
+		instructions.c sort.c utils.c input_processing.c \
 
 OBJ_1 = $(SRC_1:.c=.o)
 
