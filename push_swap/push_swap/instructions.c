@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 11:24:22 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/01/11 16:22:40 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/01/16 11:55:59 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	sa(t_list **list_a, int j)
 {
 	t_list	*tmp;
 
-	if ((ft_lstsize(*list_a) < 2))
+	if ((ft_lstsize(list_a) < 2))
 		return (-1);
 	if (!*list_a || !((*list_a)->next))
 		return (-1);
@@ -34,7 +34,7 @@ int	sb(t_list **list_b, int j)
 {
 	t_list	*tmp;
 
-	if ((ft_lstsize(*list_b) < 2))
+	if ((ft_lstsize(list_b) < 2))
 		return (-1);
 	if (!*list_b || !((*list_b)->next))
 		return (-1);
@@ -49,7 +49,7 @@ int	sb(t_list **list_b, int j)
 
 int	ss(t_list **list_a, t_list **list_b)
 {
-	if ((ft_lstsize(*list_b) < 2) || (ft_lstsize(*list_b) < 2))
+	if ((ft_lstsize(list_b) < 2) || (ft_lstsize(list_b) < 2))
 		return (-1);
 	if ((sa(list_a, 1) == -1) || (sb(list_b, 1) == -1))
 		return (-1);
@@ -115,9 +115,9 @@ int	rb(t_list **list_b, int i)
 
 int	rr(t_list **list_a, t_list **list_b)
 {
-	if (ra(list_a, 0) == -1)
+	if (ra(list_a, 1) == -1)
 		return (-1);
-	if (rb(list_b, 0) == -1)
+	if (rb(list_b, 1) == -1)
 		return (-1);
 	ft_putendl_fd("rr\n", 1);
 	return (0);	

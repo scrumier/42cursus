@@ -6,27 +6,24 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:46:55 by scrumier          #+#    #+#             */
-/*   Updated: 2024/01/15 11:56:30 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:53:15 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int put_index_bis(t_list **list)
+void put_index_bis(t_list *list)
 {
-    int i;
-
-    i = 1;
-    while ((*list)->next)
+    int i = 1;
+    while (list)
     {
-        (*list)->index = i;
+        list->index = i;
         i++;
-        *list = (*list)->next;
+        list = list->next;
     }
-    (*list)->index = i;
 }
 
-int put_index(t_list **list_a, t_list **list_b)
+void put_index(t_list *list_a, t_list *list_b)
 {
     put_index_bis(list_a);
     put_index_bis(list_b);

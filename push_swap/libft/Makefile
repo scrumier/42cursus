@@ -6,7 +6,7 @@
 #    By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 13:33:37 by scrumier          #+#    #+#              #
-#    Updated: 2024/01/15 11:17:02 by scrumier         ###   ########.fr        #
+#    Updated: 2024/01/15 16:17:35 by scrumier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJS            = $(SRCS:.c=.o)
 
 CC                = cc
 RM                = rm -f
-CFLAGS            = -Wall -Wextra -Werror
+CFLAGS            = -Wall -Wextra -Werror -g3
 
 NAME            = libft.a
 

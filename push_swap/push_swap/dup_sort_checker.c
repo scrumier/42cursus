@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dup_sort_checker.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 23:11:19 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/01/11 15:09:52 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/01/15 12:44:50 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 13:53:52 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/01/15 11:46:34 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:42:17 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,26 +62,31 @@ t_list	*ft_process_bis(char **argv)
 	return (a);
 }
 
-t_list	*process(int argc, char **argv)
+void process(int argc, char **argv, t_list **list_a)
 {
-	t_list	*list_a;
-	int		i;
-	int		j;
+    t_list *head_a;
+	t_list *new;
+    int i, j;
 
-	i = 1;
-	list_a = NULL;
-	if (argc < 2)
-		ft_error();
-	if (argc == 2)
-		list_a = ft_process_bis(argv);
-	else
-	{
-		while (i < argc)
-		{
-			j = ft_atoi_bis(argv[i]);
-			ft_lstadd_back(&list_a, ft_lstnew(j));
-			i++;
-		}
-	}
-	return (list_a);
+    i = 1;
+    if (argc < 2)
+        ft_error();
+
+    if (argc == 2)
+    {
+        *list_a = ft_process_bis(argv);
+    }
+    else
+    {
+        *list_a = NULL;
+
+        while (i < argc)
+        {
+            j = ft_atoi_bis(argv[i]);
+            new = ft_lstnew(j);
+            ft_lstadd_back(list_a, new);
+            i++;
+        }
+    }
 }
+
