@@ -6,7 +6,7 @@
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 12:36:56 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2023/12/12 16:20:55 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/01/08 15:02:28 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 42
 # endif
 
 char	*ft_substr(char const *s, unsigned int start, size_t len);

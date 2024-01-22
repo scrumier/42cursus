@@ -6,29 +6,21 @@
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 12:36:53 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2023/12/12 16:20:57 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/01/05 18:22:29 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*str;
-	size_t	s_len;
 
-	if (!s)
-		return (NULL);
-	s_len = ft_strlen(s);
-	if (start >= s_len)
-		return (NULL);
-	if (len > s_len - start)
-		len = s_len - start;
-	str = malloc(len + 1);
-	if (!str)
-		return (NULL);
-	ft_strlcpy(str, s + start, len + 1);
-	return (str);
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s && (*s != (unsigned char)c))
+		s++;
+	if (*s == (unsigned char)c)
+		return ((char *)s);
+	return (NULL);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -65,6 +57,25 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*str;
+	size_t	s_len;
+
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (NULL);
+	if (len > s_len - start)
+		len = s_len - start;
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s + start, len + 1);
+	return (str);
+}
+
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	src_len;
@@ -83,13 +94,4 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 			dst[i] = '\0';
 	}
 	return (src_len);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s && (*s != (unsigned char)c))
-		s++;
-	if (*s == (unsigned char)c)
-		return ((char *)s);
-	return (NULL);
 }

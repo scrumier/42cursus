@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:32:27 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2023/12/13 12:38:15 by scrumier         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:52:57 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_puthex_recursive(unsigned int num, const char *base, int *count)
 		if (ft_puthex_recursive(num / 16, base, count) < 0)
 			return (-1);
 	}
-	if (ft_printchar(base[num % 16]) < 0)
+	if (ft_print_char(base[num % 16]) < 0)
 		return (-1);
 	(*count)++;
 	return (1);

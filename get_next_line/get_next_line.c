@@ -6,19 +6,19 @@
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 12:36:49 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2023/12/12 16:20:58 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/01/08 14:57:24 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	free_buffer(char **buffer)
+static void	free_buffer(char **buffer)
 {
 	free(*buffer);
 	*buffer = NULL;
 }
 
-int	cut_line(char **buffer)
+static int	cut_line(char **buffer)
 {
 	int		i;
 	int		j;
@@ -45,7 +45,7 @@ int	cut_line(char **buffer)
 	return (0);
 }
 
-int	extract_line(char **buffer, char **line)
+static int	extract_line(char **buffer, char **line)
 {
 	int	i;
 
@@ -60,28 +60,28 @@ int	extract_line(char **buffer, char **line)
 	return (0);
 }
 
-int	put_in_buff(int fd, char **buffer)
+static int	put_in_buff(int fd, char **buffer)
 {
-	char	*temp;
-	char	*new_buffer;
-	ssize_t	read_status;
+	char	*tmp;
+	char	*new_buff;
+	ssize_t	readed;
 
-	read_status = 1;
-	while (read_status > 0)
+	readed = 1;
+	while (readed > 0)
 	{
-		temp = malloc(BUFFER_SIZE + 1);
-		if (!temp)
+		tmp = malloc(BUFFER_SIZE + 1);
+		if (!tmp)
 			return (-1);
-		read_status = read(fd, temp, BUFFER_SIZE);
-		if (read_status == -1 || (!read_status && !(*buffer)))
-			return (free(temp), -1);
-		temp[read_status] = '\0';
-		new_buffer = ft_strjoin(*buffer, temp);
-		free(temp);
-		if (!new_buffer)
+		readed = read(fd, tmp, BUFFER_SIZE);
+		if (readed == -1 || (!readed && !(*buffer)))
+			return (free(tmp), -1);
+		tmp[readed] = '\0';
+		new_buff = ft_strjoin(*buffer, tmp);
+		free(tmp);
+		if (!new_buff)
 			return (-1);
 		free_buffer(buffer);
-		*buffer = new_buffer;
+		*buffer = new_buff;
 		if (ft_strchr(*buffer, '\n'))
 			break ;
 	}

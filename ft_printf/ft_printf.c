@@ -6,7 +6,7 @@
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:42:13 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2023/11/25 17:06:59 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/01/08 15:05:50 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static int	process_format(const char **format, va_list *args)
 	if (**format == '%')
 	{
 		(*format)++;
+		if (*format == NULL)
+			return (-1);
 		tmp = format_specifier(args, **format);
 		if (tmp < 0)
 			return (-1);

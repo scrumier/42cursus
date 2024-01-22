@@ -6,7 +6,7 @@
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:25:06 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2023/11/24 19:44:36 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2023/12/13 12:54:11 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	ft_print_ptr(void *ptr)
 	addr = (unsigned long)ptr;
 	if (!ptr)
 	{
-		if (write(1, "(nil)", 5) < 0)
+		if (write(1, "0x0", 3) < 0)
 			return (-1);
-		return (5);
+		return (3);
 	}
 	if (write(1, "0x", 2) < 0)
 		return (-1);
