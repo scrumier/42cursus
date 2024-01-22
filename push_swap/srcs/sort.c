@@ -6,7 +6,7 @@
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:33:27 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/01/18 14:02:06 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/01/22 15:48:25 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void sort(t_list **list_a, t_list **list_b)
             printf("After find_best_way :\n");
             print_best_way(move);
 
+            printf("Before sort_best_way :\n");
+            print_list(*list_a,*list_b);
             sort_best_way(move, list_a, list_b);
 
             printf("After sort_best_way :\n");
@@ -93,7 +95,7 @@ void sort(t_list **list_a, t_list **list_b)
             write(1, "\n", 1);
             free_list_move(move);
         }
-        while (pb(list_a, list_b, 0) != -1);
+        while (pa(list_a, list_b, 0) != -1);
     }
 }
 

@@ -6,7 +6,7 @@
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 14:42:09 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/01/18 14:15:28 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/01/22 15:49:16 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int main(int argc, char **argv)
     printf("List contents before sorting:\n");
     print_list(list_a, list_b);
 
-    while (!ft_checksorted(list_a))
+    //while (!ft_checksorted(list_a))
 		sort(&list_a, &list_b);
 
     printf("List contents after sorting:\n");
@@ -88,26 +88,3 @@ int main(int argc, char **argv)
 	free_list(&list_a);
 	return 0;
 }
-
-
-
-
-
-
-// int	main(int argc, char **argv)
-// {
-// 	t_list	*list_a = NULL;
-
-// 	write(1, "u", 1);
-// 	list_a = process(argc, argv, &list_a);
-// 	if (!list_a || checkdup(list_a) == -1)
-// 	{
-// 		free_list(&list_a);
-// 		ft_error();
-// 	}
-// 	if (!ft_checksorted(list_a))
-// 		sort(&list_a);
-// 	free_list(&list_a);
-// 	write(1, "hey", 3);
-// 	return (0);
-// }

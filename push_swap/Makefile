@@ -6,7 +6,7 @@
 #    By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/10 09:32:51 by sonamcrumie       #+#    #+#              #
-#    Updated: 2024/01/17 19:04:20 by sonamcrumie      ###   ########.fr        #
+#    Updated: 2024/01/22 15:40:14 by sonamcrumie      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,4 +51,4 @@ debug: $(NAME)
 	
 leaks: $(NAME)
 	leaks ./$(NAME)
-
+ 
