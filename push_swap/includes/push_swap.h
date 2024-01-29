@@ -5,27 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/15 14:42:42 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/01/18 14:36:27 by sonamcrumie      ###   ########.fr       */
+/*   Created: 2024/01/28 23:31:06 by sonamcrumie       #+#    #+#             */
+/*   Updated: 2024/01/29 11:55:30 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <limits.h>
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-typedef struct s_list_move
-{
-	int					ra;
-	int					rb;
-	int					rra;
-	int					rrb;
-}				t_list_move;
+# include "../libft/libft_src/libft.h"
 
+// Stack
 typedef struct s_list
 {
 	int				value;
@@ -33,56 +23,44 @@ typedef struct s_list
 	struct s_list	*next;
 }				t_list;
 
-//print
-void print_best_way(t_list_move *move);
-void print_list(t_list *list_a, t_list *list_b);
+// Util functions
+t_list	*ft_lstnew(int value);
+t_list	*ft_lstlast(t_list *head);
+void	ft_lstadd_front(t_list **stack, t_list *new);
+void	ft_lstadd_back(t_list **stack, t_list *new);
+void	printList(t_list *head);
+int		ft_lstsize(t_list *head);
 
-//algo
-void	sort(t_list **list_a, t_list **list_b);
-void	sort_best_way(t_list_move *move, t_list **list_a, t_list **list_b);
+void	ft_error(char *msg);
+void	ft_check_args(int argc, char **argv);
+int		is_sorted(t_list **stack);
+int		get_distance(t_list **stack, int index);
+void	make_top(t_list **stack, int distance);
+void	free_stack(t_list **stack);
+void	ft_free(char **str);
 
-//parse
-void 	put_index(t_list *list_a, t_list *list_b);
-void	process(int argc, char **argv, t_list **list_a);
-void	find_best_way(t_list_move **move, t_list *list_a, t_list *list_b);
+// Algorithm utils
+void	radix_sort(t_list **stack_a, t_list **stack_b);
+void	simple_sort(t_list **stack_a, t_list **stack_b);
+void	index_stack(t_list **stack);
+void	sort_5(t_list **stack_a, t_list **stack_b);
 
-//error
-void	ft_error(void);
-int		check_argv(char **args);
-int		checkdup(t_list *list_a);
-int		ft_checksorted(t_list *list_a);
-int		ft_rev_checksorted(t_list *list_b);
-int		check_error(char **argv, int i, int j);
+// Instruction functions
+int		swap(t_list **stack);
+int		push(t_list **stack_to, t_list **stack_from);
+int		rotate(t_list **stack);
+int		reverseRotate(t_list **stack);
 
-//utils
-int		ft_isalpha(int c);
-int		ft_isdigit(int c);
-t_list *ft_lstnew(int value);
-void	ft_freestr(char **lst);
-size_t	ft_strlen(const char *s);
-void	free_list(t_list **list);
-int	 	ft_lstsize(t_list *list);
-t_list	*ft_lstlast(t_list *lst);
-void	ft_putendl_fd(char *s, int fd);
-char	**ft_split(char const *s, char c);
-void	free_list_move(t_list_move *list);
-void	*ft_calloc(size_t nmemb, size_t size);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-
-//move
-int		sa(t_list **list_a, int j);
-int		sb(t_list **list_b, int j);
-int		ra(t_list **list_a, int i);
-int		rb(t_list **list_b, int i);
-void	rra(t_list **list_b, int j);
-void	rrb(t_list **list_a, int j);
-int		pa(t_list **list_a, t_list **list_b, int j);
-int		pb(t_list **list_a, t_list **list_b, int j);
-int		rr(t_list **list_a, t_list **list_b);
-int		ss(t_list **list_a, t_list **list_b);
-void 	rrr(t_list **list_a, t_list **list_b, int j);
+int		sa(t_list **stack_a);
+int		sb(t_list **stack_b);
+int		ss(t_list **stack_a, t_list **stack_b);
+int		pa(t_list **stack_a, t_list **stack_b);
+int		pb(t_list **stack_b, t_list **stack_a);
+int		ra(t_list **stack_a);
+int		rb(t_list **stack_b);
+int		rr(t_list **stack_a, t_list **stack_b);
+int		rra(t_list **stack_a);
+int		rrb(t_list **stack_b);
+int		rrr(t_list **stack_a, t_list **stack_b);
 
 #endif

@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/28 23:46:53 by sonamcrumie       #+#    #+#              #
-#    Updated: 2024/01/29 11:35:03 by sonamcrumie      ###   ########.fr        #
+#    Created: 2024/01/10 09:32:51 by sonamcrumie       #+#    #+#              #
+#    Updated: 2024/01/22 15:40:14 by sonamcrumie      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,16 +16,13 @@ RM = rm -f
 FLAGS = -Wall -Wextra -Werror
 DEBUG_FLAGS = -g
 OBJ_DIR = obj/
-SRC_DIR = src/
-SRC_1 = instructions.c main.c radix.c simple.c utils.c t_list.c index.c check_args.c
+SRC_DIR = srcs/
+
+SRC_1 = push_swap.c argv_checker.c dup_sort_checker.c put_index.c \
+        instructions.c sort.c utils.c input_processing.c ft_split.c \
+        find_best_way.c
 
 OBJ_1 = $(addprefix $(OBJ_DIR), $(SRC_1:.c=.o))
-
-LIBFT_DIR = libft
-LIBFT_MAKEFILE = $(LIBFT_DIR)/Makefile
-LIBFT = $(LIBFT_DIR)/libft.a
-LIBFT_INC = -I$(LIBFT_DIR)/includes
-LIBFT_LINK = -L$(LIBFT_DIR) -lft
 
 all: $(NAME)
 
@@ -33,22 +30,17 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
-	$(CC) $(FLAGS) $(DEBUG_FLAGS) $(LIBFT_INC) -c $< -o $@
+	$(CC) $(FLAGS) $(DEBUG_FLAGS) -c $< -o $@
 
-$(NAME): $(OBJ_1) $(LIBFT)
-	$(CC) $(FLAGS) $(DEBUG_FLAGS) $(OBJ_1) -o $(NAME) $(LIBFT_LINK)
-
-$(LIBFT):
-	make -C $(LIBFT_DIR)
+$(NAME): $(OBJ_1)
+	$(CC) $(FLAGS) $(DEBUG_FLAGS) $(OBJ_1) -o $(NAME)
 
 clean:
 	$(RM) $(OBJ_1)
 	$(RM) -r $(OBJ_DIR)
-	make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	$(RM) $(NAME)
-	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
@@ -56,6 +48,7 @@ re: fclean all
 
 debug: $(NAME)
 	lldb ./$(NAME)
-
+	
 leaks: $(NAME)
 	leaks ./$(NAME)
+ 
