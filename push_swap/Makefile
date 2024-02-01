@@ -3,18 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+         #
+#    By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/28 23:46:53 by sonamcrumie       #+#    #+#              #
-#    Updated: 2024/01/29 11:35:03 by sonamcrumie      ###   ########.fr        #
+#    Updated: 2024/01/31 21:23:55 by scrumier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
-CC = gcc
+CC = cc
 RM = rm -f
 FLAGS = -Wall -Wextra -Werror
-DEBUG_FLAGS = -g
 OBJ_DIR = obj/
 SRC_DIR = src/
 SRC_1 = instructions.c main.c radix.c simple.c utils.c t_list.c index.c check_args.c
@@ -33,10 +32,10 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
-	$(CC) $(FLAGS) $(DEBUG_FLAGS) $(LIBFT_INC) -c $< -o $@
+	$(CC) $(FLAGS) $(LIBFT_INC) -c $< -o $@
 
 $(NAME): $(OBJ_1) $(LIBFT)
-	$(CC) $(FLAGS) $(DEBUG_FLAGS) $(OBJ_1) -o $(NAME) $(LIBFT_LINK)
+	$(CC) $(FLAGS) $(OBJ_1) -o $(NAME) $(LIBFT_LINK)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
@@ -56,6 +55,3 @@ re: fclean all
 
 debug: $(NAME)
 	lldb ./$(NAME)
-
-leaks: $(NAME)
-	leaks ./$(NAME)
