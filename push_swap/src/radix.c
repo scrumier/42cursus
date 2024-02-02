@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:44:25 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/01 05:32:49 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:35:53 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ void	radix_sort(t_list **stack_a, t_list **stack_b)
 				ra(stack_a);
 			else
 				pb(stack_a, stack_b);
+			if (is_sorted(stack_a))
+				break;
 		}
+		j = 0;
 		while (ft_lstsize(*stack_b) != 0)
 			pa(stack_a, stack_b);
 		i++;

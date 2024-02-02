@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:42:57 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/01 05:40:00 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:42:57 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_send_bits(int pid, char i)
 	bit = 0;
 	while (bit < 8)
 	{
-		if ((i & (0x01 << bit)) != 0)
+		if ((i & (0x01 << bit)) == 0)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
