@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+         #
+#    By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/28 23:46:53 by sonamcrumie       #+#    #+#              #
-#    Updated: 2024/01/31 21:23:55 by scrumier         ###   ########.fr        #
+#    Updated: 2024/02/06 11:38:01 by sonamcrumie      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ RM = rm -f
 FLAGS = -Wall -Wextra -Werror
 OBJ_DIR = obj/
 SRC_DIR = src/
-SRC_1 = instructions.c main.c radix.c simple.c utils.c t_list.c index.c check_args.c
+SRC_1 = instructions1.c instructions2.c instructions3.c main.c radix.c \
+		sort2-5.c sort2-5_bis.c utils.c t_list.c index.c check_args.c free_stack.c
 
 OBJ_1 = $(addprefix $(OBJ_DIR), $(SRC_1:.c=.o))
 

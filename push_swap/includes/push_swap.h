@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:31:06 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/02 13:06:37 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/02/06 11:44:23 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_list	*ft_lstnew(int value);
 t_list	*ft_lstlast(t_list *head);
 void	ft_lstadd_front(t_list **stack, t_list *new);
 void	ft_lstadd_back(t_list **stack, t_list *new);
-void	printList(t_list *head);
 int		ft_lstsize(t_list *head);
 
 void	ft_error(char *msg);
@@ -40,12 +39,17 @@ void	ft_free(char **str);
 void	radix_sort(t_list **stack_a, t_list **stack_b);
 void	simple_sort(t_list **stack_a, t_list **stack_b);
 void	index_stack(t_list **stack);
+int		get_min(t_list **stack, int val);
+void	calculate_min_values(t_list **stack_a, int *min, int *next_min);
+void	sort_logic(t_list **stack_a, t_list *head, int min, int next_min);
+void	sort_3(t_list **stack_a);
+void	sort_4(t_list **stack_a, t_list **stack_b);
 void	sort_5(t_list **stack_a, t_list **stack_b);
 
 int		swap(t_list **stack);
 int		push(t_list **stack_to, t_list **stack_from);
 int		rotate(t_list **stack);
-int		reverseRotate(t_list **stack);
+int		reverse_rotate(t_list **stack);
 
 int		sa(t_list **stack_a);
 int		sb(t_list **stack_b);

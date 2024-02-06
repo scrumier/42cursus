@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple.c                                           :+:      :+:    :+:   */
+/*   sort2-5.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:45:02 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/01 02:13:37 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/02/06 11:36:04 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	get_min(t_list **stack, int val)
+int	get_min(t_list **stack, int val)
 {
 	t_list	*head;
 	int		min;
@@ -28,17 +28,14 @@ static int	get_min(t_list **stack, int val)
 	return (min);
 }
 
-static void	sort_3(t_list **stack_a)
+void	calculate_min_values(t_list **stack_a, int *min, int *next_min)
 {
-	t_list	*head;
-	int		min;
-	int		next_min;
+	*min = get_min(stack_a, -1);
+	*next_min = get_min(stack_a, *min);
+}
 
-	head = *stack_a;
-	min = get_min(stack_a, -1);
-	next_min = get_min(stack_a, min);
-	if (is_sorted(stack_a))
-		return ;
+void	sort_logic(t_list **stack_a, t_list *head, int min, int next_min)
+{
 	if (head->index == min && head->next->index != next_min)
 	{
 		ra(stack_a);
@@ -64,7 +61,19 @@ static void	sort_3(t_list **stack_a)
 	}
 }
 
-static void	sort_4(t_list **stack_a, t_list **stack_b)
+void	sort_3(t_list **stack_a)
+{
+	int		min;
+	int		next_min;
+	t_list	*head;
+
+	head = *stack_a;
+	calculate_min_values(stack_a, &min, &next_min);
+	if (!is_sorted(stack_a))
+		sort_logic(stack_a, head, min, next_min);
+}
+
+void	sort_4(t_list **stack_a, t_list **stack_b)
 {
 	int	distance;
 
@@ -85,48 +94,4 @@ static void	sort_4(t_list **stack_a, t_list **stack_b)
 	pb(stack_a, stack_b);
 	sort_3(stack_a);
 	pa(stack_a, stack_b);
-}
-
-void	sort_5(t_list **stack_a, t_list **stack_b)
-{
-	int	distance;
-
-	distance = get_distance(stack_a, get_min(stack_a, -1));
-	if (distance == 1)
-		ra(stack_a);
-	else if (distance == 2)
-	{
-		ra(stack_a);
-		ra(stack_a);
-	}
-	else if (distance == 3)
-	{
-		rra(stack_a);
-		rra(stack_a);
-	}
-	else if (distance == 4)
-		rra(stack_a);
-	if (is_sorted(stack_a))
-		return ;
-	pb(stack_a, stack_b);
-	sort_4(stack_a, stack_b);
-	pa(stack_a, stack_b);
-}
-
-void	simple_sort(t_list **stack_a, t_list **stack_b)
-{
-	int	size;
-
-	if (is_sorted(stack_a) || ft_lstsize(*stack_a) == 0
-		|| ft_lstsize(*stack_a) == 1)
-		return ;
-	size = ft_lstsize(*stack_a);
-	if (size == 2)
-		sa(stack_a);
-	else if (size == 3)
-		sort_3(stack_a);
-	else if (size == 4)
-		sort_4(stack_a, stack_b);
-	else if (size == 5)
-		sort_5(stack_a, stack_b);
 }

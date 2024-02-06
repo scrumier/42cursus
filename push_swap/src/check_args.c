@@ -6,13 +6,13 @@
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:57:02 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/01/29 00:13:53 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/02/06 11:49:47 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	ft_contains(int num, char **argv, int i)
+static int	is_twice(int num, char **argv, int i)
 {
 	i++;
 	while (argv[i])
@@ -24,47 +24,57 @@ static int	ft_contains(int num, char **argv, int i)
 	return (0);
 }
 
-static int	ft_isnum(char *num)
+static int	check_nbr(char *nbr)
 {
 	int	i;
 
 	i = 0;
-	if (num[0] == '-')
+	if (nbr[0] == '-')
 		i++;
-	while (num[i])
+	while (nbr[i])
 	{
-		if (!ft_isdigit(num[i]))
+		if (!ft_isdigit(nbr[i]))
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-void	ft_check_args(int argc, char **argv)
+static void	ft_check_args_bis(char **args, int i)
 {
-	int		i;
 	long	tmp;
-	char	**args;	
 
-	i = 0;
-	if (argc == 2)
-		args = ft_split(argv[1], ' ');
-	else
-	{
-		i = 1;
-		args = argv;
-	}
 	while (args[i])
 	{
 		tmp = ft_atoi(args[i]);
-		if (!ft_isnum(args[i]))
+		if (!check_nbr(args[i]))
 			ft_error("Error");
-		if (ft_contains(tmp, args, i))
+		if (is_twice(tmp, args, i))
 			ft_error("Error");
 		if (tmp < -2147483648 || tmp > 2147483647)
 			ft_error("Error");
 		i++;
 	}
+}
+
+void	ft_check_args(int argc, char **argv)
+{
+	int		i;
+	char	**args;	
+
+	i = 0;
+	if (argc == 2)
+	{
+		args = ft_split(argv[1], ' ');
+		if (!args)
+			ft_error("Error");
+	}
+	else
+	{
+		i = 1;
+		args = argv;
+	}
+	ft_check_args_bis(args, i);
 	if (argc == 2)
 		ft_free(args);
 }
