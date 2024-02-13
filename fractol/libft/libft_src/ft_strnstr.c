@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 10:27:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/12 21:39:42 by sonamcrumie      ###   ########.fr       */
+/*   Created: 2023/11/15 15:30:38 by scrumier          #+#    #+#             */
+/*   Updated: 2024/01/11 15:09:42 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "libft.h"
 
-static void open_fd(int *fd, char str)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	fd = open(str, O_RDONLY);
-	if (fd < 0)
-	{
-		//gerer l'erreur
-	}
-}
+	size_t	i;
+	size_t	j;
 
-int	main(int ac, char **av)
-{
-	int		fd;
-	t_fdf	fdf;
-
-	if (ac != 2)
+	if (!little[0])
+		return ((char *)big);
+	i = 0;
+	while (big[i] && i < len)
 	{
-		ft_putstr_fd("Usage: ./fdf <filename>\n", 2);
-		return (1);
+		j = 0;
+		while (big[i + j] && little[j]
+			&& ((i + j) < len) && (big[i + j] == little[j]))
+			j++;
+		if (!little[j])
+			return ((char *)(big + i));
+		i++;
 	}
-	fdf_init(&fdf, fd);
-	fdf_parse(fd, &fdf) == -1;
-	fdf_draw(&fdf);
-	mlx_loop(fdf.mlx);
-	return (0);
+	return (NULL);
 }

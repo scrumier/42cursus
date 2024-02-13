@@ -5,58 +5,58 @@
 #                                                     +:+ +:+         +:+      #
 #    By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/30 14:25:42 by scrumier          #+#    #+#              #
-#    Updated: 2024/02/12 13:48:48 by sonamcrumie      ###   ########.fr        #
+#    Created: 2024/02/07 11:47:40 by sonamcrumie       #+#    #+#              #
+#    Updated: 2024/02/08 14:28:52 by sonamcrumie      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	fdf
 LIBFT		=	libft/
 GNL			=	get_next_line/
-MLX			=	mlx_linux/
+MLX			=	mlx-linux/
 SRC_PATH	=	src/
 LIBFT_A		=	$(addprefix $(LIBFT), libft.a)
 GNL_A		=	$(addprefix $(GNL), gnl.a)
-MLX_L		=	$(addprefix $(MLX), libmlx.a)
-MLX_M		=	$(addprefix $(MLX), libmlx_Darwin.a)
+MLX_A		=	$(addprefix $(MLX), libmlx.a)
 
 CC			=	cc
 CFLAGS		=	-Wall -Wextra
 RM			=	rm -f
-SRCS		=	$(wildcard $(SRC_PATH)*.c)
-OBJS		=	$(SRCS:.c=.o)
+SRCS		=	fdf.c parse_input.c
+OBJS		=	$(SRCS:$(SRC_PATH)%.c=%.o)
 
-UNAME_S := $(shell uname -s)
+all:			$(NAME)
 
-all: $(NAME)
-
-ifeq ($(UNAME_S),Darwin)
-	$(NAME): $(OBJS) $(LIBFT_A) $(GNL_A) $(MLX_M)
-		$(CC) $(OBJS) $(LIBFT_A) $(GNL_A) $(MLX_L) -I. -Lmlx -lmlx ./mlx_mac/libmlx_Darwin.a -framework OpenGL -framework Appkit $(NAME)
-endif
-ifeq ($(UNAME_S),Linux)
-	$(NAME): $(OBJS) $(LIBFT_A) $(GNL_A) $(MLX_L)
-		$(CC) $(OBJS) $(LIBFT_A) $(GNL_A) $(MLX_L) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
-endif
+$(NAME): $(OBJS) $(LIBFT_A) $(GNL_A) $(MLX_A)
+	$(CC) $(OBJS) $(LIBFT_A) $(GNL_A) $(MLX_A) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 $(LIBFT_A): FORCE
-	@$(MAKE) -s -C $(LIBFT)
+				@$(MAKE) -s -C $(LIBFT)
 
 $(GNL_A): FORCE
-	@$(MAKE) -s -C $(GNL)
+				@$(MAKE) -s -C $(GNL)
 
-$(MLX_L): FORCE
-	@$(MAKE) -s -C $(MLX)
+$(MLX_A): FORCE
+				@$(MAKE) -s -C $(MLX)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
-clean:
-	$(RM) $(OBJS)
 
-fclean: clean
-	$(RM) $(NAME)
+clean:			@$(RM) $(OBJS)
+				@$(MAKE) clean -s -C $(LIBFT)
+				@$(MAKE) clean -s -C $(GNL)
+				@$(MAKE) clean -s -C $(MLX)
 
-re:	fclean all
+fclean:			localclean
+				@$(MAKE) fclean -s -C $(LIBFT)
+				@$(MAKE) fclean -s -C $(GNL)
+				@$(MAKE) clean -s -C $(MLX)
+				@$(RM) $(NAME)
 
-.PHONY: all clean fclean re FORCE
+re:				fclean all
+
+FORCE:
+
+
+.PHONY:			all clean fclean re 

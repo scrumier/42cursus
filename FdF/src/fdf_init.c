@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fdf_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 10:27:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/12 21:39:42 by sonamcrumie      ###   ########.fr       */
+/*   Created: 2024/02/12 14:57:17 by sonamcrumie       #+#    #+#             */
+/*   Updated: 2024/02/12 21:51:50 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void open_fd(int *fd, char str)
+void	fdf_init(t_fdf *fdf)
 {
-	fd = open(str, O_RDONLY);
-	if (fd < 0)
-	{
-		//gerer l'erreur
-	}
-}
-
-int	main(int ac, char **av)
-{
-	int		fd;
-	t_fdf	fdf;
-
-	if (ac != 2)
-	{
-		ft_putstr_fd("Usage: ./fdf <filename>\n", 2);
-		return (1);
-	}
-	fdf_init(&fdf, fd);
-	fdf_parse(fd, &fdf) == -1;
-	fdf_draw(&fdf);
-	mlx_loop(fdf.mlx);
-	return (0);
+	(*fdf).mlx = mlx_init();
+	(*fdf).win = mlx_new_window((*fdf).mlx, WIDTH, HEIGHT, "FDF");
+	(*fdf).img = mlx_new_img((*fdf).mlx, WIDTH, HEIGHT);
+	(*fdf).map = NULL;
+	(*fdf).width = 0;
+	(*fdf).height = 0;
+	(*fdf).color = 0;
+	(*fdf).depth = 0;
+	(*fdf).offset_x = 0;
+	(*fdf).offset_y = 0;
 }
