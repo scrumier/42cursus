@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:27:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/13 13:43:42 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:37:07 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int ac, char **av)
 	int		fd;
 	t_fdf	fdf;
 
+	check_error(ac, av);
 	if (ac != 2)
 	{
 		ft_putstr_fd("Usage: ./fdf <filename>\n", 2);

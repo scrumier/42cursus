@@ -6,21 +6,20 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:39:43 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/13 13:45:11 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:36:39 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "../libft/libft_src/libft.h"
+# include "libft.h"
 # include "get_next_line.h"
 # include "../mlx_linux/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include "keys.h"
 
-// MACROS
 # define WIDTH 1024
 # define HEIGHT 1024
 
