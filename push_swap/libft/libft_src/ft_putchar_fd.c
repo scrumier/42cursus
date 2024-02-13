@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:33:18 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/06 12:03:37 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/02/06 12:46:44 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_putchar_fd(char c, int fd)
 {
-	if (!(write(fd, &c, 1)))
+	if (write(fd, &c, 1) == -1)
 		return (-1);
 	return (0);
 }

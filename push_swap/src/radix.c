@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   radix.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:44:25 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/06 11:34:45 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/02/13 12:54:33 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	sort_by_bit(t_list **stack_a, t_list **stack_b, int size, int bit)
 	{
 		head_a = *stack_a;
 		if (((head_a->index >> bit) & 1) == 1)
-			ra(stack_a);
+			ra(stack_a, stack_b);
 		else
 			pb(stack_a, stack_b);
 		if (is_sorted(stack_a))

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   instructions1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:43:44 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/06 11:52:55 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/02/13 13:01:02 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	swap(t_list **stack)
+int	swap(t_list **stack, t_list **stack_a, t_list **stack_b)
 {
 	t_list	*head;
 	t_list	*next;
@@ -24,7 +24,7 @@ int	swap(t_list **stack)
 	head = *stack;
 	next = head->next;
 	if (!head && !next)
-		ft_error("Error: stack is empty");
+		ft_error("Error: stack is empty", stack_a, stack_b);
 	tmp_val = head->value;
 	tmp_index = head->index;
 	head->value = next->value;
@@ -34,21 +34,21 @@ int	swap(t_list **stack)
 	return (0);
 }
 
-int	sa(t_list **stack_a)
+int	sa(t_list **stack_a, t_list **stack_b)
 {
-	if (swap(stack_a) == -1)
+	if (swap(stack_a, stack_a, stack_b) == -1)
 		return (-1);
 	if (ft_putendl_fd("sa", 1) == -1)
-		ft_error("Error");
+		ft_error("Error", stack_a, stack_b);
 	return (0);
 }
 
-int	sb(t_list **stack_b)
+int	sb(t_list **stack_a, t_list **stack_b)
 {
-	if (swap(stack_b) == -1)
+	if (swap(stack_b, stack_a, stack_b) == -1)
 		return (-1);
 	if (ft_putendl_fd("sb", 1) == -1)
-		ft_error("Error");
+		ft_error("Error", stack_b, stack_b);
 	return (0);
 }
 
@@ -56,10 +56,10 @@ int	ss(t_list **stack_a, t_list **stack_b)
 {
 	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
 		return (-1);
-	swap(stack_a);
-	swap(stack_b);
+	swap(stack_a, stack_a, stack_b);
+	swap(stack_b, stack_a, stack_b);
 	if (ft_putendl_fd("ss", 1) == -1)
-		ft_error("Error");
+		ft_error("Error", stack_a, stack_b);
 	return (0);
 }
 

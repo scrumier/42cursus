@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:31:06 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/06 11:44:23 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/02/13 13:00:17 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	ft_lstadd_front(t_list **stack, t_list *new);
 void	ft_lstadd_back(t_list **stack, t_list *new);
 int		ft_lstsize(t_list *head);
 
-void	ft_error(char *msg);
+void	ft_error(char *msg, t_list **a, t_list **b);
 void	ft_check_args(int argc, char **argv);
 int		is_sorted(t_list **stack);
 int		get_distance(t_list **stack, int index);
-void	make_top(t_list **stack, int distance);
+void	make_top(t_list **stack_a, t_list **stack_b, int distance);
 void	free_stack(t_list **stack);
 void	ft_free(char **str);
 
@@ -41,26 +41,26 @@ void	simple_sort(t_list **stack_a, t_list **stack_b);
 void	index_stack(t_list **stack);
 int		get_min(t_list **stack, int val);
 void	calculate_min_values(t_list **stack_a, int *min, int *next_min);
-void	sort_logic(t_list **stack_a, t_list *head, int min, int next_min);
-void	sort_3(t_list **stack_a);
+void	sort_logic(t_list **stack_a, t_list **stack_b, t_list *head, int min, int next_min);
+void	sort_3(t_list **stack_a, t_list **stack_b);
 void	sort_4(t_list **stack_a, t_list **stack_b);
 void	sort_5(t_list **stack_a, t_list **stack_b);
 
-int		swap(t_list **stack);
+int		swap(t_list **stack, t_list **stack_a, t_list **stack_b);
 int		push(t_list **stack_to, t_list **stack_from);
 int		rotate(t_list **stack);
 int		reverse_rotate(t_list **stack);
 
-int		sa(t_list **stack_a);
-int		sb(t_list **stack_b);
+int		sa(t_list **stack_a, t_list **stack_b);
+int		sb(t_list **stack_a, t_list **stack_b);
 int		ss(t_list **stack_a, t_list **stack_b);
 int		pa(t_list **stack_a, t_list **stack_b);
 int		pb(t_list **stack_b, t_list **stack_a);
-int		ra(t_list **stack_a);
-int		rb(t_list **stack_b);
+int		ra(t_list **stack_a, t_list **stack_b);
+int		rb(t_list **stack_a, t_list **stack_b);
 int		rr(t_list **stack_a, t_list **stack_b);
-int		rra(t_list **stack_a);
-int		rrb(t_list **stack_b);
+int		rra(t_list **stack_a, t_list **stack_b);
+int		rrb(t_list **stack_a, t_list **stack_b);
 int		rrr(t_list **stack_a, t_list **stack_b);
 
 #endif

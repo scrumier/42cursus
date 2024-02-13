@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:57:02 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/06 11:49:47 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/02/13 13:03:22 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ static void	ft_check_args_bis(char **args, int i)
 	{
 		tmp = ft_atoi(args[i]);
 		if (!check_nbr(args[i]))
-			ft_error("Error");
+			ft_error("Error", NULL, NULL);
 		if (is_twice(tmp, args, i))
-			ft_error("Error");
+			ft_error("Error", NULL, NULL);
 		if (tmp < -2147483648 || tmp > 2147483647)
-			ft_error("Error");
+			ft_error("Error", NULL, NULL);
 		i++;
 	}
 }
@@ -67,7 +67,7 @@ void	ft_check_args(int argc, char **argv)
 	{
 		args = ft_split(argv[1], ' ');
 		if (!args)
-			ft_error("Error");
+			ft_error("Error", NULL, NULL);
 	}
 	else
 	{

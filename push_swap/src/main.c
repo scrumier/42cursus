@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:28:45 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/06 11:45:22 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/02/13 09:34:45 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
 	stack_a = (t_list **)malloc(sizeof(t_list));
 	stack_b = (t_list **)malloc(sizeof(t_list));
 	if (!stack_a || !stack_b)
-		ft_error("Error");
+		ft_error("Error", stack_a, stack_b);
 	*stack_a = NULL;
 	*stack_b = NULL;
 	parse(stack_a, argc, argv);
