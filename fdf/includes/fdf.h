@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sonam <sonam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:39:43 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/13 15:36:39 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/02/14 13:42:47 by sonam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ typedef struct	s_data {
 	int		line_length;
 	int		endian;
 }				t_data;
+
+void	fdf_init(t_fdf *fdf);
 
 #endif
