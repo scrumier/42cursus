@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 14:39:43 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/23 13:47:23 by scrumier         ###   ########.fr       */
+/*   Created: 2023/11/15 13:32:48 by scrumier          #+#    #+#             */
+/*   Updated: 2023/11/16 12:41:16 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "libft.h"
-# include "get_next_line.h"
-# include "../mlx_linux/mlx.h"
-# include <fcntl.h>
-# include <math.h>
-# include "keys.h"
-
-# define WIDTH 1024
-# define HEIGHT 1024
-
-typedef struct s_fdf
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	int		width;
-	int		height;
-	int		**z_matrix;
-
-	void	*mlx;
-	void	*win;
-}			t_fdf;
-
-int		ft_countwords(char *s);
-void	fdf_init(char file, t_fdf *data);
-
-
-#endif
+	while (lst)
+	{
+		(*f)(lst->content);
+		lst = lst->next;
+	}
+}

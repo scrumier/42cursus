@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 14:39:43 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/23 13:47:23 by scrumier         ###   ########.fr       */
+/*   Created: 2023/11/15 13:33:24 by scrumier          #+#    #+#             */
+/*   Updated: 2023/11/16 13:23:30 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "libft.h"
-# include "get_next_line.h"
-# include "../mlx_linux/mlx.h"
-# include <fcntl.h>
-# include <math.h>
-# include "keys.h"
-
-# define WIDTH 1024
-# define HEIGHT 1024
-
-typedef struct s_fdf
+void	ft_putnbr_fd(int n, int fd)
 {
-	int		width;
-	int		height;
-	int		**z_matrix;
-
-	void	*mlx;
-	void	*win;
-}			t_fdf;
-
-int		ft_countwords(char *s);
-void	fdf_init(char file, t_fdf *data);
-
-
-#endif
+	if (n == -2147483648)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putchar_fd('2', fd);
+		ft_putnbr_fd(147483648, fd);
+	}
+	else if (n < 0)
+	{
+		write(fd, "-", 1);
+		n = -n;
+		ft_putnbr_fd(n, fd);
+	}
+	else if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
+	else
+		ft_putchar_fd(n + 48, fd);
+}

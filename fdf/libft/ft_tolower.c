@@ -1,40 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 14:39:43 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/23 13:47:23 by scrumier         ###   ########.fr       */
+/*   Created: 2023/11/15 15:30:32 by scrumier          #+#    #+#             */
+/*   Updated: 2023/11/23 15:49:31 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
-
-# include "libft.h"
-# include "get_next_line.h"
-# include "../mlx_linux/mlx.h"
-# include <fcntl.h>
-# include <math.h>
-# include "keys.h"
-
-# define WIDTH 1024
-# define HEIGHT 1024
-
-typedef struct s_fdf
+int	ft_tolower(int c)
 {
-	int		width;
-	int		height;
-	int		**z_matrix;
-
-	void	*mlx;
-	void	*win;
-}			t_fdf;
-
-int		ft_countwords(char *s);
-void	fdf_init(char file, t_fdf *data);
-
-
-#endif
+	if (c >= 'A' && c <= 'Z')
+		c += 32;
+	return (c);
+}

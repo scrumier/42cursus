@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 14:39:43 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/23 13:47:23 by scrumier         ###   ########.fr       */
+/*   Created: 2023/11/15 13:33:04 by scrumier          #+#    #+#             */
+/*   Updated: 2023/11/16 13:08:31 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "libft.h"
-# include "get_next_line.h"
-# include "../mlx_linux/mlx.h"
-# include <fcntl.h>
-# include <math.h>
-# include "keys.h"
-
-# define WIDTH 1024
-# define HEIGHT 1024
-
-typedef struct s_fdf
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int		width;
-	int		height;
-	int		**z_matrix;
+	const unsigned char	*s1_tmp;
+	const unsigned char	*s2_tmp;
 
-	void	*mlx;
-	void	*win;
-}			t_fdf;
-
-int		ft_countwords(char *s);
-void	fdf_init(char file, t_fdf *data);
-
-
-#endif
+	s1_tmp = (const unsigned char *)s1;
+	s2_tmp = (const unsigned char *)s2;
+	if (n == 0)
+		return (0);
+	while (n-- != 0)
+	{
+		if (*s1_tmp != *s2_tmp)
+			return (*s1_tmp - *s2_tmp);
+		s1_tmp++;
+		s2_tmp++;
+	}
+	return (0);
+}

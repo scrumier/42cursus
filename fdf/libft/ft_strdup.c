@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 14:39:43 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/23 13:47:23 by scrumier         ###   ########.fr       */
+/*   Created: 2023/11/15 15:30:55 by scrumier          #+#    #+#             */
+/*   Updated: 2023/11/22 13:28:21 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "libft.h"
-# include "get_next_line.h"
-# include "../mlx_linux/mlx.h"
-# include <fcntl.h>
-# include <math.h>
-# include "keys.h"
-
-# define WIDTH 1024
-# define HEIGHT 1024
-
-typedef struct s_fdf
+char	*ft_strdup(const char *s)
 {
-	int		width;
-	int		height;
-	int		**z_matrix;
+	char	*s2;
+	size_t	i;
 
-	void	*mlx;
-	void	*win;
-}			t_fdf;
-
-int		ft_countwords(char *s);
-void	fdf_init(char file, t_fdf *data);
-
-
-#endif
+	s2 = (char *)malloc(sizeof(*s) * (ft_strlen((char *)s) + 1));
+	if (!s2)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		s2[i] = s[i];
+		i++;
+	}
+	s2[i] = 0;
+	return (s2);
+}

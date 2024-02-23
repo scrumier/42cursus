@@ -3,44 +3,51 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sonam <sonam@student.42.fr>                +#+  +:+       +#+         #
+#    By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:31:24 by sonam             #+#    #+#              #
-#    Updated: 2024/02/14 13:45:23 by sonam            ###   ########.fr        #
+#    Updated: 2024/02/23 18:20:16 by scrumier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Makefile variables
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-LIBRARIES = -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
+LIBRARIES = -Lmlx_linux -lmlx_Linux -Llibft -lft -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 INCLUDES = -I/usr/include -Imlx_linux
-SRC_DIR = src/
-OBJ_DIR = obj/
+SRC_DIR = src
+OBJ_DIR = .obj
+LIBFT_DIR = libft
 NAME = fdf
+MLX = mlx_linux
+SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
+OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-# Source files
-SRC_FILES = $(wildcard $(SRC_DIR)*.c)
-OBJ_FILES = $(SRC_FILES:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
+all: mlx libft $(NAME)
 
-# Main target
-all: $(NAME)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(FLAGS) $(INCLUDES) -O3 -c $< -o $@ -I$(LIBFT_DIR)/includes
 
-# Compilation des fichiers .c en fichiers .o
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	$(CC) $(FLAGS) $(INCLUDES) -O3 -c $< -o $@
-
-# Construction de l'exécutable
 $(NAME): $(OBJ_FILES)
 	$(CC) $(OBJ_FILES) $(LIBRARIES) -o $(NAME)
 
-# Nettoyage des fichiers objets et de l'exécutable
+$(OBJ_DIR):
+	mkdir -p $@
+
+mlx:
+	@make -C $(MLX)
+
+libft:
+	@make -C $(LIBFT_DIR)
+
 clean:
-	rm -rf $(OBJ_DIR)
+	$(RM) -rf $(OBJ_DIR)
+	@make -C $(LIBFT_DIR) clean
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re mlx libft
+

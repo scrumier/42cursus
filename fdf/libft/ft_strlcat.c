@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 10:27:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/23 18:23:30 by scrumier         ###   ########.fr       */
+/*   Created: 2023/11/15 15:30:49 by scrumier          #+#    #+#             */
+/*   Updated: 2023/11/22 13:29:04 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int ac, char **av)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	t_fdf	*data;
+	char		*d;
+	const char	*s;
+	size_t		n;
+	size_t		dlen;
 
-	(void)ac;
-	data = (t_fdf*)malloc(sizeof(t_fdf));
-	fdf_init(*av[1], data);
-	int i;
-	int j;
-	i = 0;
-	while (i < data->height)
+	d = dst;
+	s = src;
+	n = size;
+	while ((n-- != 0) && (*d != '\0'))
+		d++;
+	dlen = d - dst;
+	n = size - dlen;
+	if (n == 0)
+		return (dlen + ft_strlen((char *)s));
+	while (*s != '\0')
 	{
-		j = 0;
-		while (j < data->width)
+		if (n != 1)
 		{
-			printf("%d ", data->z_matrix[i][j]);
-			j++;
+			*d++ = *s;
+			n--;
 		}
-		printf("\n");
-		i++;
+		s++;
 	}
-	return (0);
+	*d = '\0';
+	return (dlen + (s - src));
 }

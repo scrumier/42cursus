@@ -1,0 +1,7 @@
+.obj
+libft/.printf_obj
+libft/.libft_obj
+libft/.gnl_obj
+libft/libft.a
+fdf
+.vscode
