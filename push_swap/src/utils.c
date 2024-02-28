@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:38:03 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/28 15:52:58 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:44:05 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 void	ft_error(char *msg, t_list **a, t_list **b)
 {
-	if (a && *a)
-	{
+	if (*a)
 		free_list(*a);
+	if (a)
 		free(a);
-	}
-	if (b && *b)
-	{
+	if (*b)
 		free_list(*b);
+	if (b)
 		free(b);
-	}
 	ft_putendl_fd(msg, 2);
 	exit(0);
 }
