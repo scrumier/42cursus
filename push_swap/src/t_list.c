@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:55:49 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/01/30 14:02:56 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/02/15 13:27:03 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ t_list	*ft_lstnew(int value)
 	return (new);
 }
 
-void	ft_lstadd_front(t_list **stack, t_list *new)
+void	ft_lstadd_front(t_list **list, t_list *new)
 {
-	new->next = *stack;
-	*stack = new;
+	new->next = *list;
+	*list = new;
 }
 
 t_list	*ft_lstlast(t_list *head)
@@ -45,20 +45,20 @@ t_list	*ft_lstlast(t_list *head)
 	return (tmp);
 }
 
-void	ft_lstadd_back(t_list **stack, t_list *new)
+void	ft_lstadd_back(t_list **list, t_list *new)
 {
 	t_list	*n;
 
-	if (*stack)
+	if (*list)
 	{
-		n = ft_lstlast(*stack);
+		n = ft_lstlast(*list);
 		n->next = new;
 		new->next = NULL;
 	}
 	else
 	{
-		*stack = new;
-		(*stack)->next = NULL;
+		*list = new;
+		(*list)->next = NULL;
 	}
 }
 

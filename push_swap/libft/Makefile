@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+         #
+#    By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 13:33:37 by scrumier          #+#    #+#              #
-#    Updated: 2024/01/29 11:52:31 by sonamcrumie      ###   ########.fr        #
+#    Updated: 2024/02/26 13:19:16 by scrumier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

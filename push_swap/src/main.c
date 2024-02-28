@@ -6,13 +6,13 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:28:45 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/13 09:34:45 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:54:31 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	parse(t_list **stack, int argc, char **argv)
+static void	parse(t_list **list, int argc, char **argv)
 {
 	t_list	*new;
 	char	**args;
@@ -29,45 +29,44 @@ static void	parse(t_list **stack, int argc, char **argv)
 	while (args[i])
 	{
 		new = ft_lstnew(ft_atoi(args[i]));
-		ft_lstadd_back(stack, new);
+		ft_lstadd_back(list, new);
 		i++;
 	}
-	index_stack(stack);
+	index_list(list);
 	if (argc == 2)
 		ft_free(args);
 }
 
-static void	sort_stack(t_list **stack_a, t_list **stack_b)
+static void	sort_list(t_list **list_a, t_list **list_b)
 {
-	if (ft_lstsize(*stack_a) <= 5)
-		simple_sort(stack_a, stack_b);
+	if (ft_lstsize(*list_a) <= 5)
+		simple_sort(list_a, list_b);
 	else
-		radix_sort(stack_a, stack_b);
+		radix_sort(list_a, list_b);
 }
 
 int	main(int argc, char **argv)
 {
-	t_list	**stack_a;
-	t_list	**stack_b;
+	t_list	**list_a;
+	t_list	**list_b;
 
 	if (argc < 2)
-		return (-1);
+		return (0);
 	ft_check_args(argc, argv);
-	stack_a = (t_list **)malloc(sizeof(t_list));
-	stack_b = (t_list **)malloc(sizeof(t_list));
-	if (!stack_a || !stack_b)
-		ft_error("Error", stack_a, stack_b);
-	*stack_a = NULL;
-	*stack_b = NULL;
-	parse(stack_a, argc, argv);
-	if (is_sorted(stack_a))
+	list_a = (t_list **)malloc(sizeof(t_list));
+	list_b = (t_list **)malloc(sizeof(t_list));
+	if (!list_a || !list_b)
+		ft_error("Error", list_a, list_b);
+	*list_a = NULL;
+	*list_b = NULL;
+	parse(list_a, argc, argv);
+	check_double(list_a);
+	if (is_sorted(list_a))
 	{
-		free_stack(stack_a);
-		free_stack(stack_b);
+		free_all(list_a, list_b);
 		return (0);
 	}
-	sort_stack(stack_a, stack_b);
-	free_stack(stack_a);
-	free_stack(stack_b);
+	sort_list(list_a, list_b);
+	free_all(list_a, list_b);
 	return (0);
 }

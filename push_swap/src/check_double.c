@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_stack.c                                       :+:      :+:    :+:   */
+/*   check_double.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 11:44:40 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/05 11:44:49 by sonamcrumie      ###   ########.fr       */
+/*   Created: 2024/02/26 11:40:10 by scrumier          #+#    #+#             */
+/*   Updated: 2024/02/26 14:07:28 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	free_stack(t_list **stack)
+void	check_double(t_list **list)
 {
 	t_list	*head;
 	t_list	*tmp;
 
-	head = *stack;
+	head = *list;
 	while (head)
 	{
-		tmp = head;
+		tmp = head->next;
+		while (tmp)
+		{
+			if (head->value == tmp->value)
+				ft_error("Error", list, NULL);
+			tmp = tmp->next;
+		}
 		head = head->next;
-		free(tmp);
 	}
-	free(stack);
 }

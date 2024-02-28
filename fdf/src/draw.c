@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 13:25:59 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/26 15:45:25 by scrumier         ###   ########.fr       */
+/*   Created: 2024/02/28 17:01:57 by scrumier          #+#    #+#             */
+/*   Updated: 2024/02/28 17:14:45 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int ft_countwords(char *s)
+static void do_bresenham(int y, int x, t_fdf *data, t_coord coords)
 {
-    int i;
-    int count;
+    
+}
 
-    i = 0;
-    count = 0;
-    if (!s)
-        return (0);
-    while (s[i])
+void    draw(t_fdf *data)
+{
+    int x;
+    int y;
+    t_coord coords;
+
+    y = 0;
+    while (y < data->height)
     {
-        if (s[i] != ' ')
+        x = 0;
+        while (x < data->width)
         {
-            count++;
-            while (s[i] && s[i] != ' ')
-                i++;
+            do_bresenham(y, x, data, coords);
         }
-        else
-            i++;
     }
-    return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:38:03 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/13 13:35:12 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:52:58 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 void	ft_error(char *msg, t_list **a, t_list **b)
 {
-	if (!a && b)
-		free(b);
-	if (a && !b)
-		free(a);
-	if (a && b)
+	if (a && *a)
 	{
+		free_list(*a);
 		free(a);
+	}
+	if (b && *b)
+	{
+		free_list(*b);
 		free(b);
 	}
-	ft_putendl_fd(msg, 1);
+	ft_putendl_fd(msg, 2);
 	exit(0);
 }
 
@@ -33,16 +34,15 @@ void	ft_free(char **str)
 
 	i = 0;
 	while (str[i])
-		i++;
-	while (i >= 0)
-		free(str[i--]);
+		free(str[i++]);
+	free(str);
 }
 
-int	is_sorted(t_list **stack)
+int	is_sorted(t_list **list)
 {
 	t_list	*head;
 
-	head = *stack;
+	head = *list;
 	while (head && head->next)
 	{
 		if (head->value > head->next->value)
@@ -52,13 +52,13 @@ int	is_sorted(t_list **stack)
 	return (1);
 }
 
-int	get_distance(t_list **stack, int index)
+int	get_distance(t_list **list, int index)
 {
 	t_list	*head;
 	int		distance;
 
 	distance = 0;
-	head = *stack;
+	head = *list;
 	while (head)
 	{
 		if (head->index == index)
@@ -69,23 +69,23 @@ int	get_distance(t_list **stack, int index)
 	return (distance);
 }
 
-void	make_top(t_list **stack_a, t_list **stack_b, int distance)
+void	make_top(t_list **list_a, t_list **list_b, int distance)
 {
 	t_list	*head;
 	int		tmp;
 
 	if (distance == 0)
 		return ;
-	head = *stack_a;
+	head = *list_a;
 	tmp = ft_lstsize(head) - distance;
 	if (distance <= (ft_lstsize(head) / 2))
 	{
 		while (distance-- > 0)
-			ra(stack_a, stack_b);
+			ra(list_a, list_b);
 	}
 	else
 	{
 		while (tmp-- > 0)
-			rra(stack_a, stack_b);
+			rra(list_a, list_b);
 	}
 }

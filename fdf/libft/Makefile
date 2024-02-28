@@ -6,7 +6,7 @@
 #    By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 14:25:42 by scrumier          #+#    #+#              #
-#    Updated: 2024/02/23 15:29:08 by scrumier         ###   ########.fr        #
+#    Updated: 2024/02/28 16:18:24 by scrumier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ PRINTF_OBJ = $(addprefix $(PRINTF_OBJ_DIR), $(PRINTF_SRC:$(PRINTF_SRC_DIR)%.c=%.
 
 LIBFT_CC = gcc
 LIBFT_FLAGS = -Wall -Wextra -Werror
-LIBFT_INC = -I../includes/
+LIBFT_INC = -I../includes
 
 LIBFT_NAME = libft.a
 

@@ -6,20 +6,20 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:44:25 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/13 12:54:33 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/02/15 13:26:56 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	needed_bits(t_list **stack)
+static int	needed_bits(t_list **list)
 {
 	int		max;
 	int		max_bits;
 	t_list	*head;
 
 	max_bits = 0;
-	head = *stack;
+	head = *list;
 	max = head->index;
 	while (head)
 	{
@@ -32,7 +32,7 @@ static int	needed_bits(t_list **stack)
 	return (max_bits);
 }
 
-void	sort_by_bit(t_list **stack_a, t_list **stack_b, int size, int bit)
+void	sort_by_bit(t_list **list_a, t_list **list_b, int size, int bit)
 {
 	int		j;
 	t_list	*head_a;
@@ -40,17 +40,17 @@ void	sort_by_bit(t_list **stack_a, t_list **stack_b, int size, int bit)
 	j = 0;
 	while (j++ < size)
 	{
-		head_a = *stack_a;
+		head_a = *list_a;
 		if (((head_a->index >> bit) & 1) == 1)
-			ra(stack_a, stack_b);
+			ra(list_a, list_b);
 		else
-			pb(stack_a, stack_b);
-		if (is_sorted(stack_a))
+			pb(list_a, list_b);
+		if (is_sorted(list_a))
 			break ;
 	}
 }
 
-void	radix_sort(t_list **stack_a, t_list **stack_b)
+void	radix_sort(t_list **list_a, t_list **list_b)
 {
 	int		i;
 	int		size;
@@ -58,14 +58,14 @@ void	radix_sort(t_list **stack_a, t_list **stack_b)
 	t_list	*head_a;
 
 	i = 0;
-	head_a = *stack_a;
+	head_a = *list_a;
 	size = ft_lstsize(head_a);
-	bits = needed_bits(stack_a);
+	bits = needed_bits(list_a);
 	while (i < bits)
 	{
-		sort_by_bit(stack_a, stack_b, size, i);
-		while (ft_lstsize(*stack_b) != 0)
-			pa(stack_a, stack_b);
+		sort_by_bit(list_a, list_b, size, i);
+		while (ft_lstsize(*list_b) != 0)
+			pa(list_a, list_b);
 		i++;
 	}
 }

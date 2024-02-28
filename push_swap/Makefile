@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+         #
+#    By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/28 23:46:53 by sonamcrumie       #+#    #+#              #
-#    Updated: 2024/02/06 11:38:01 by sonamcrumie      ###   ########.fr        #
+#    Updated: 2024/02/26 13:23:59 by scrumier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ FLAGS = -Wall -Wextra -Werror
 OBJ_DIR = obj/
 SRC_DIR = src/
 SRC_1 = instructions1.c instructions2.c instructions3.c main.c radix.c \
-		sort2-5.c sort2-5_bis.c utils.c t_list.c index.c check_args.c free_stack.c
+		sort_five.c sort_five_bis.c utils.c t_list.c index.c check_args.c \
+		free_list.c check_double.c
 
 OBJ_1 = $(addprefix $(OBJ_DIR), $(SRC_1:.c=.o))
 
@@ -38,7 +39,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
 $(NAME): $(OBJ_1) $(LIBFT)
 	$(CC) $(FLAGS) $(OBJ_1) -o $(NAME) $(LIBFT_LINK)
 
-$(LIBFT):
+$(LIBFT): FORCE
 	make -C $(LIBFT_DIR)
 
 clean:
@@ -50,9 +51,8 @@ fclean: clean
 	$(RM) $(NAME)
 	make -C $(LIBFT_DIR) fclean
 
+FORCE:
+
 re: fclean all
 
-.PHONY: all clean fclean re
-
-debug: $(NAME)
-	lldb ./$(NAME)
+.PHONY: all clean fclean re FORCE

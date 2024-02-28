@@ -6,12 +6,12 @@
 #    By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:31:24 by sonam             #+#    #+#              #
-#    Updated: 2024/02/23 18:20:16 by scrumier         ###   ########.fr        #
+#    Updated: 2024/02/28 16:04:07 by scrumier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Ofast -MMD -MP
 LIBRARIES = -Lmlx_linux -lmlx_Linux -Llibft -lft -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 INCLUDES = -I/usr/include -Imlx_linux
 SRC_DIR = src
@@ -38,6 +38,8 @@ mlx:
 
 libft:
 	@make -C $(LIBFT_DIR)
+
+-include $(DEP)
 
 clean:
 	$(RM) -rf $(OBJ_DIR)

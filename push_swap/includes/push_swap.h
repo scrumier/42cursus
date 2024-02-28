@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:31:06 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/13 13:00:17 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:05:31 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,44 +23,47 @@ typedef struct s_list
 }				t_list;
 
 t_list	*ft_lstnew(int value);
-t_list	*ft_lstlast(t_list *head);
-void	ft_lstadd_front(t_list **stack, t_list *new);
-void	ft_lstadd_back(t_list **stack, t_list *new);
 int		ft_lstsize(t_list *head);
+t_list	*ft_lstlast(t_list *head);
+void	ft_lstadd_back(t_list **list, t_list *new);
+void	ft_lstadd_front(t_list **list, t_list *new);
 
-void	ft_error(char *msg, t_list **a, t_list **b);
-void	ft_check_args(int argc, char **argv);
-int		is_sorted(t_list **stack);
-int		get_distance(t_list **stack, int index);
-void	make_top(t_list **stack_a, t_list **stack_b, int distance);
-void	free_stack(t_list **stack);
 void	ft_free(char **str);
+void	free_all(t_list **list_a, t_list **list_b);
+void	free_list(t_list *list);
+int		is_sorted(t_list **list);
+void	check_double(t_list **list);
+void	ft_check_args(int argc, char **argv);
+int		get_distance(t_list **list, int index);
+void	ft_error(char *msg, t_list **a, t_list **b);
+void	make_top(t_list **list_a, t_list **list_b, int distance);
 
-void	radix_sort(t_list **stack_a, t_list **stack_b);
-void	simple_sort(t_list **stack_a, t_list **stack_b);
-void	index_stack(t_list **stack);
-int		get_min(t_list **stack, int val);
-void	calculate_min_values(t_list **stack_a, int *min, int *next_min);
-void	sort_logic(t_list **stack_a, t_list **stack_b, t_list *head, int min, int next_min);
-void	sort_3(t_list **stack_a, t_list **stack_b);
-void	sort_4(t_list **stack_a, t_list **stack_b);
-void	sort_5(t_list **stack_a, t_list **stack_b);
+void	index_list(t_list **list);
+int		get_min(t_list **list, int val);
+void	sort_3(t_list **list_a, t_list **list_b);
+void	sort_4(t_list **list_a, t_list **list_b);
+void	sort_5(t_list **list_a, t_list **list_b);
+void	radix_sort(t_list **list_a, t_list **list_b);
+void	simple_sort(t_list **list_a, t_list **list_b);
+void	make_ra_sa_rra(t_list **list_a, t_list **list_b);
+void	calculate_min_values(t_list **list_a, int *min, int *next_min);
+void	sort_logic(t_list **list_a, t_list **list_b, int min, int next_min);
 
-int		swap(t_list **stack, t_list **stack_a, t_list **stack_b);
-int		push(t_list **stack_to, t_list **stack_from);
-int		rotate(t_list **stack);
-int		reverse_rotate(t_list **stack);
+int		rotate(t_list **list);
+int		reverse_rotate(t_list **list);
+int		push(t_list **list_to, t_list **list_from);
+int		swap(t_list **list, t_list **list_a, t_list **list_b);
 
-int		sa(t_list **stack_a, t_list **stack_b);
-int		sb(t_list **stack_a, t_list **stack_b);
-int		ss(t_list **stack_a, t_list **stack_b);
-int		pa(t_list **stack_a, t_list **stack_b);
-int		pb(t_list **stack_b, t_list **stack_a);
-int		ra(t_list **stack_a, t_list **stack_b);
-int		rb(t_list **stack_a, t_list **stack_b);
-int		rr(t_list **stack_a, t_list **stack_b);
-int		rra(t_list **stack_a, t_list **stack_b);
-int		rrb(t_list **stack_a, t_list **stack_b);
-int		rrr(t_list **stack_a, t_list **stack_b);
+int		sa(t_list **list_a, t_list **list_b);
+int		sb(t_list **list_a, t_list **list_b);
+int		ss(t_list **list_a, t_list **list_b);
+int		pa(t_list **list_a, t_list **list_b);
+int		pb(t_list **list_b, t_list **list_a);
+int		ra(t_list **list_a, t_list **list_b);
+int		rb(t_list **list_a, t_list **list_b);
+int		rr(t_list **list_a, t_list **list_b);
+int		rra(t_list **list_a, t_list **list_b);
+int		rrb(t_list **list_a, t_list **list_b);
+int		rrr(t_list **list_a, t_list **list_b);
 
 #endif

@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 13:31:46 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/13 14:19:07 by scrumier         ###   ########.fr       */
+/*   Created: 2024/02/28 16:10:05 by scrumier          #+#    #+#             */
+/*   Updated: 2024/02/28 16:13:04 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
 	long int	result;
 	int			sign;
@@ -31,10 +31,10 @@ int	ft_atoi(const char *nptr)
 	}
 	while (ft_isdigit(*nptr))
 	{
-		if (sign == 1 && (result > (LONG_MAX - (*nptr - '0')) / 10))
-			return (-1);
-		if (sign == -1 && (-result < (LONG_MIN + (*nptr - '0')) / 10))
-			return (0);
+		if (sign == 1 && (result > (INT_MAX - (*nptr - '0')) / 10))
+			return (LONG_MAX - 1);
+		if (sign == -1 && (-result < (INT_MIN + (*nptr - '0')) / 10))
+			return (LONG_MIN + 1);
 		result = result * 10 + (*nptr - '0');
 		nptr++;
 	}

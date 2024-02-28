@@ -1,51 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   index.c                                            :+:      :+:    :+:   */
+/*   free_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 23:56:27 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/15 13:26:38 by scrumier         ###   ########.fr       */
+/*   Created: 2024/02/15 13:27:35 by scrumier          #+#    #+#             */
+/*   Updated: 2024/02/26 14:07:24 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static t_list	*get_next_min(t_list **list)
+void	free_list(t_list *list)
 {
 	t_list	*head;
-	t_list	*min;
-	int		has_min;
+	t_list	*tmp;
 
-	min = NULL;
-	has_min = 0;
-	head = *list;
-	if (head)
-	{
-		while (head)
-		{
-			if ((head->index == -1) && (!has_min || head->value < min->value))
-			{
-				min = head;
-				has_min = 1;
-			}
-			head = head->next;
-		}
-	}
-	return (min);
-}
-
-void	index_list(t_list **list)
-{
-	t_list	*head;
-	int		index;
-
-	index = 0;
-	head = get_next_min(list);
+	head = list;
 	while (head)
 	{
-		head->index = index++;
-		head = get_next_min(list);
+		tmp = head;
+		head = head->next;
+		free(tmp);
 	}
+}
+
+void	free_all(t_list **list_a, t_list **list_b)
+{
+	free_list(*list_a);
+	free_list(*list_b);
+	free(list_a);
+	free(list_b);
 }
