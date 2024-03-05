@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   isometric.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 13:32:20 by scrumier          #+#    #+#             */
-/*   Updated: 2023/11/23 15:49:24 by scrumier         ###   ########.fr       */
+/*   Created: 2024/03/04 13:43:52 by sonamcrumie       #+#    #+#             */
+/*   Updated: 2024/03/04 13:44:47 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(int c)
+#include "../includes/fdf.h"
+
+void isometric(float *x, float *y, int z, float angle)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	else
-		return (0);
+	*x = (*x - *y) * cos(angle);
+	*y = (*x + *y) * sin(angle) - z;
 }

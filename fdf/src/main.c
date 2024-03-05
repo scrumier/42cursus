@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:27:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/28 17:04:57 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/04 13:53:30 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,18 @@
 
 static int keys(int key, void *data)
 {
-	printf("%d", key);
+	if (key == 53)
+		exit(0);
+	if (key == 69)
+		((t_fdf*)data)->zoom += 1;
+	if (key == 78)
+		((t_fdf*)data)->zoom -= 1;
+	if (key == 123)
+		((t_fdf*)data)->angle -= 0.05;
+	if (key == 124)
+		((t_fdf*)data)->angle += 0.05;
+	mlx_clear_window(((t_fdf*)data)->mlx, ((t_fdf*)data)->win);
+	draw((t_fdf*)data);
 	return (0);
 }
 
