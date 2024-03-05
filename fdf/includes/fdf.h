@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:39:43 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/28 17:04:18 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/05 14:58:50 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 # include "keys.h"
 
 # define WIDTH 1024
@@ -30,6 +32,7 @@ typedef struct s_fdf
 	int		height;
 	int		**z_matrix;
 	int		zoom;
+	float	angle;
 
 	void	*mlx;
 	void	*win;
@@ -47,6 +50,8 @@ typedef struct s_coord
 int		ft_countwords(char *s);
 void	fdf_init(char *file, t_fdf *data);
 void    bresenham(t_coord coord, t_fdf *data);
+void    draw(t_fdf *data);
+void isometric(float *x, float *y, int z, float angle);
 
 
 #endif
