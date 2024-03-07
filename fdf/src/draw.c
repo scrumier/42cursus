@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:01:57 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/05 14:00:35 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:38:01 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void    draw(t_fdf *data)
         while (x < data->width)
         {
             do_bresenham(y, x, data, coords);
+            x++;
         }
+        y++;
     }
 }

@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:25:59 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/26 15:45:25 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:20:18 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 int ft_countwords(char *s)
 {
-    int i;
-    int count;
+	int i;
+	int count;
 
-    i = 0;
-    count = 0;
-    if (!s)
-        return (0);
-    while (s[i])
-    {
-        if (s[i] != ' ')
-        {
-            count++;
-            while (s[i] && s[i] != ' ')
-                i++;
-        }
-        else
-            i++;
-    }
-    return (count);
+	i = 0;
+	count = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+	{
+		if (s[i] != ' ')
+		{
+			count++;
+			while (s[i] && s[i] != ' ')
+				i++;
+		}
+		else
+			i++;
+	}
+	return (count);
 }
