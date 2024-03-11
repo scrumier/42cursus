@@ -1,43 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 13:25:59 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/08 12:11:05 by sonamcrumie      ###   ########.fr       */
+/*   Created: 2024/03/08 12:20:56 by sonamcrumie       #+#    #+#             */
+/*   Updated: 2024/03/08 12:21:09 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	ft_isnumber(char c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-
-int ft_countwords(char *s)
+void	free_all(t_fdf *data)
 {
 	int i;
-	int count;
 
 	i = 0;
-	count = 0;
-	if (!s)
-		return (0);
-	while (s[i])
+	while (i < data->height)
 	{
-		if (s[i] != ' ')
-		{
-			count++;
-			while (s[i] && s[i] != ' ')
-				i++;
-		}
-		else
-			i++;
+		free(data->z_matrix[i]);
+		i++;
 	}
-	return (count);
+	free(data->z_matrix);
+	free(data);
 }

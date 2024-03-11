@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:57:17 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/03/05 14:14:01 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/08 12:31:54 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,5 @@ void    fdf_init(char *file, t_fdf *data)
 		i++;
 	}
 	close(fd);
+	data->size_map = (data->width + data->height) / 2;
 }

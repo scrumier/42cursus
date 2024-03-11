@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:22:19 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/07 17:34:00 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/08 12:19:52 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,9 @@ void	bresenham(t_coord coord, t_fdf *data)
 	y_coef /= max;
 	while ((int)(coord.x - coord.x1) || (int)(coord.y - coord.y1))
 	{
-		mlx_pixel_put(data->mlx, data->win, coord.x + 100, coord.y + 100, 0xffffff);
+		mlx_pixel_put(data->mlx, data->win, coord.x, coord.y, 0xFFFFFF);
 		coord.x += x_coef;
 		coord.y += y_coef;
 	}
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }

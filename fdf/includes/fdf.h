@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:39:43 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/05 14:58:50 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/08 12:26:17 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,17 @@ typedef struct s_fdf
 	int		height;
 	int		**z_matrix;
 	int		zoom;
-	float	angle;
+	float	angle_y;
+	float	angle_x;
+	int 	size_map;
 
 	void	*mlx;
 	void	*win;
+	void	*img;
+	char	*data_addr;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
 }			t_fdf;
 
 typedef struct s_coord
