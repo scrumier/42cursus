@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:39:43 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/08 12:26:17 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/03/12 15:41:34 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@
 # define WIDTH 1024
 # define HEIGHT 1024
 
+typedef struct s_coord
+{
+	float	x;
+	float	y;
+	float	x1;
+	float	y1;
+}			t_coord;
+
 typedef struct s_fdf
 {
 	int		width;
@@ -34,6 +42,8 @@ typedef struct s_fdf
 	int		zoom;
 	float	angle_y;
 	float	angle_x;
+	int		z;
+	int		z1;
 	int 	size_map;
 
 	void	*mlx;
@@ -43,22 +53,21 @@ typedef struct s_fdf
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
+	t_coord	*coord;
 }			t_fdf;
 
-typedef struct s_coord
-{
-	float	x;
-	float	y;
-	float	x1;
-	float	y1;
-}			t_coord;
+
 
 
 int		ft_countwords(char *s);
 void	fdf_init(char *file, t_fdf *data);
 void    bresenham(t_coord coord, t_fdf *data);
-void    draw(t_fdf *data);
-void isometric(float *x, float *y, int z, float angle);
-
+void    draw(t_fdf *data, t_coord coords);
+void 	isometric(float *x, float *y, int z, t_fdf *data);
+void	free_all(t_fdf *data);
+void	check_error(char *file);
+void	check_data(t_fdf *data);
+int		ft_isnumber(int c);
+void	can_i_put_pixel(t_fdf *data, int x, int y, int color);
 
 #endif

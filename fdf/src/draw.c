@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:01:57 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/07 14:38:01 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:04:20 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ static void	do_bresenham(int y, int x, t_fdf *data, t_coord coords)
     }
 }
 
-void    draw(t_fdf *data)
+void    draw(t_fdf *data, t_coord coords)
 {
     int x;
     int y;
-    t_coord coords;
 
     y = 0;
     while (y < data->height)
@@ -47,4 +46,5 @@ void    draw(t_fdf *data)
         }
         y++;
     }
+    mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }

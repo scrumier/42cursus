@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:25:59 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/08 12:11:05 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/03/11 12:45:22 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	ft_isnumber(char c)
+int	ft_isnumber(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);

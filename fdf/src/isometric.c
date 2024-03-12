@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   isometric.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:03:38 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/08 12:04:16 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/03/12 12:51:49 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

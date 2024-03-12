@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:57:17 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/03/08 12:31:54 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/03/12 14:24:06 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	fill(int *z_line, char *line)
 
 	nbr = ft_split(line, ' ');
 	i = 0;
-	while (nbr[i] != NULL)
+	while (nbr[i + 1])
 	{
 		z_line[i] = ft_atoi(nbr[i]);
 		i++;
@@ -74,11 +74,21 @@ void    fdf_init(char *file, t_fdf *data)
 
 	data->height = get_height(file); //hauteur
 	data->width = get_width(file); //largeur
-	data->z_matrix = (int **)malloc(sizeof(int *) * data->height);
+	data->z_matrix = (int **)malloc(sizeof(int *) * data->height + 1);
+	if (!data->z_matrix)
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit(1);
+	}
 	i = 0;
 	while (i < data->height)
 	{
-		data->z_matrix[i] = (int *)malloc(sizeof(int) * data->width);
+		data->z_matrix[i] = (int *)malloc(sizeof(int) * data->width + 1);
+		if (data->z_matrix[i] == NULL)
+		{
+			ft_putstr_fd("Error\n", 2);
+			exit(1);
+		}
 		i++;
 	}
 	fd = open(file, O_RDONLY);

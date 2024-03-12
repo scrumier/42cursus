@@ -3,117 +3,151 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:27:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/08 12:36:29 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/03/12 15:46:30 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <stdio.h>
 
-static int keys(int key, void *data)
+static int keys(int key, t_fdf *data, t_coord coord)
 {
-	printf("key: %d\n", key);
+	printf("key = %d\n", key);
 	if (key == 65307)
 	{
-		mlx_destroy_window(((t_fdf*)data)->mlx, ((t_fdf*)data)->win);
-		free_all((t_fdf*)data);
-		exit(0);
+		mlx_destroy_image(data->mlx, data->img);
+		mlx_destroy_window(data->mlx, data->win);
+		mlx_destroy_display(data->mlx);
+		free_all(data);
+		exit(EXIT_FAILURE);
 	}
-	if (key == )
+	else if (key == 61)
 	{
-		//zoom "p"
-		((t_fdf*)data)->size_map *= 1.2;
+		//zoom "="
+		((t_fdf*)data)->size_map += 2;
 	}
-	if (key == )
+	else if (key == 45)
 	{
-		//zoom "m"
-		((t_fdf*)data)->size_map /= 1.2;
+		//zoom "-"
+		((t_fdf*)data)->size_map -= 2;
 	}
-	if (key == 65361)
+	// else if (key == 112)
+	// {
+	// 	//p
+	// 	data->z += 2 * data->size_map;
+	// 	data->z1 += 2 * data->size_map;
+	// }
+	// else if (key == 109)
+	// {
+	// 	//m
+	// 	data->z -= 2 * data->size_map;
+	// 	data->z1 -= 2 * data->size_map;
+	// }
+	else if (key == 65361)
 	{
 		//gauche
-		data->pos_x -= 10 * data->size_map;
+		data->coord->x -= 10 * data->size_map;
+		data->coord->x1 -= 10 * data->size_map;
 	}
-	if (key == 65364)
+	else if (key == 65364)
 	{
 		//bas
-		data->pos_y += 10 * data->size_map;
+		data->coord->y += 10 * data->size_map;
+		data->coord->y1 += 10 * data->size_map;
 	}
-	if (key == 65363)
+	else if (key == 65363)
 	{
 		//droite
-		data->pos_x += 10 * data->size_map;
+		data->coord->x += 10 * data->size_map;
+		data->coord->x1 += 10 * data->size_map;
 	}
-	if (key == 65362)
+	else if (key == 65362)
 	{
 		//haut
-		data->pos_y -= 10 * data->size_map;
+		data->coord->y -= 10 * data->size_map;
+		data->coord->y1 -= 10 * data->size_map;
 	}
-	if (key == 119)
+	else if (key == 119)
 	{
 		//rotate y "w"
-		data->angle_y += 0.1 * data->size_map;
+		data->angle_y += 0.1;
 	}
-	if (key == 97)
+	else if (key == 97)
 	{
 		//rotate x "a"
-		data->angle_x += 0.1 * data->size_map;
+		data->angle_x += 0.1;
 	}
-	if (key == 115)
+	else if (key == 115)
 	{
 		//rotate y "s"
-		data->angle_y -= 0.1 * data->size_map;
+		data->angle_y -= 0.1;
 	}
-	if (key == 100)
+	else if (key == 100)
 	{
 		//rotate x "d"
-		data->angle_x -= 0.1 * data->size_map;
+		data->angle_x -= 0.1;
 	}
-	if (key == 61)
+	else if (key == 65451)
 	{
 		//zoom "+"
 		data->zoom += 1 * data->size_map;
 	}
-	if (key == 45)
+	else if (key == 65453)
 	{
 		//zoom "-"
 		data->zoom -= 1 * data->size_map;
 	}
+	else if (key == 114)
+	{
+		//reset "r"
+		data->zoom = 20;
+		data->size_map = 1;
+		data->angle_x = 0.8;
+		data->angle_y = 0.8;
+	}
+	else
+		return (0);
+	mlx_destroy_image(data->mlx, data->img);
 	mlx_clear_window(data->mlx, data->win);
-	draw(data);
+	data->img = mlx_new_image(data->mlx, HEIGHT, WIDTH);
+	draw(data, coord);
 	return (0);
 }
 
 void	mlx_in_data(t_fdf *data)
 {
-	data->pos_x = 0;
-	data->pos_y = 0;
-	data->angle_x = 0;
-	data->angle_y = 0;
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, HEIGHT, WIDTH, "FdF");
 	data->img = mlx_new_image(data->mlx, HEIGHT, WIDTH);
-	data->data_addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->size_line, &data->endian);
 	data->zoom = 20;
-	data->angle = 0.78;
+	data->size_map = 1;
+	data->angle_x = 0.45;
+	data->angle_y = 0.45;
+	data->coord->x = 0;
+	data->coord->y = 0;
+	data->coord->x1 = 0;
+	data->coord->y1 = 0;
 }
 
 int	main(int ac, char **av)
 {
 	t_fdf	*data;
+	t_coord	coord;
 
 	if (ac != 2)
 		return (ft_putstr_fd("Usage: ./fdf file\n", 2), 1);
 	check_error(av[1]);
 	data = (t_fdf*)malloc(sizeof(t_fdf));
+	data->coord = &coord;
 	fdf_init(av[1], data);
 	check_data(data);
 	mlx_in_data(data);
-	draw(data);
-	mlx_key_hook(data->win, keys, NULL);
+	data->data_addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->size_line, &data->endian);
+	draw(data, coord);
+	mlx_key_hook(data->win, keys, data);
 	mlx_loop(data->mlx);
 	return (0);
 }
