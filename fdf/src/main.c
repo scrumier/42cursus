@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:27:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/12 16:45:47 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:23:13 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,47 +28,37 @@ static int keys(int key, t_fdf *data, t_coord coord)
 	{
 		//zoom "="
 		((t_fdf*)data)->size_map += 2;
+		return (0);
 	}
 	else if (key == 45)
 	{
 		//zoom "-"
 		((t_fdf*)data)->size_map -= 2;
-	}
-	else if (key == 112)
-	{
-		//p
-		data->z += 2 * data->size_map;
-		data->z1 += 2 * data->size_map;
-	}
-	else if (key == 109)
-	{
-		//m
-		data->z -= 2 * data->size_map;
-		data->z1 -= 2 * data->size_map;
+		return (0);
 	}
 	else if (key == 65361)
 	{
 		//gauche
-		data->coord->x -= 10 * data->size_map;
-		data->coord->x1 -= 10 * data->size_map;
+		data->x -= 10 * data->size_map;
+		data->x1 -= 10 * data->size_map;
 	}
 	else if (key == 65364)
 	{
 		//bas
-		data->coord->y += 10 * data->size_map;
-		data->coord->y1 += 10 * data->size_map;
+		data->y += 10 * data->size_map;
+		data->y1 += 10 * data->size_map;
 	}
 	else if (key == 65363)
 	{
 		//droite
-		data->coord->x += 10 * data->size_map;
-		data->coord->x1 += 10 * data->size_map;
+		data->x += 10 * data->size_map;
+		data->x1 += 10 * data->size_map;
 	}
 	else if (key == 65362)
 	{
 		//haut
-		data->coord->y -= 10 * data->size_map;
-		data->coord->y1 -= 10 * data->size_map;
+		data->y -= 10 * data->size_map;
+		data->y1 -= 10 * data->size_map;
 	}
 	else if (key == 119)
 	{
@@ -100,6 +90,17 @@ static int keys(int key, t_fdf *data, t_coord coord)
 		//zoom "-"
 		data->zoom -= 1 * data->size_map;
 	}
+	else if (key == 112)
+	{
+		// p heigh
+			data->coef_z += data->size_map;
+	}
+	else if (key == 109)
+	{
+		// m heigh
+		if (data->coef_z > 1)
+			data->coef_z -= data->size_map;
+	}
 	else if (key == 114)
 	{
 		//reset "r"
@@ -126,10 +127,7 @@ void	mlx_in_data(t_fdf *data)
 	data->size_map = 1;
 	data->angle_x = 0.45;
 	data->angle_y = 0.45;
-	data->coord->x = 0;
-	data->coord->y = 0;
-	data->coord->x1 = 0;
-	data->coord->y1 = 0;
+	data->coef_z = 1;
 }
 
 int	main(int ac, char **av)
@@ -137,7 +135,6 @@ int	main(int ac, char **av)
 	t_fdf	*data;
 	t_coord	coord;
 
-	write(1, "u", 1);
 	if (ac != 2)
 		return (ft_putstr_fd("Usage: ./fdf file\n", 2), 1);
 	check_error(av[1]);

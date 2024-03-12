@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:13:15 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/03/12 16:48:25 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:11:49 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,8 @@ void	check_data(t_fdf *data)
 
 bool can_i_put_pixel(t_fdf *data, int x, int y)
 {
-	if (x >= 0 && x < WIDTH 
-			&& y >= 0 && y < HEIGHT)
-		return (true);
-	else
-		return (false);
+    if (x >= 0 && x < HEIGHT && y >= 0 && y < WIDTH)
+        return (true);
+    else
+        return (false);
 }

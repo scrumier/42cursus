@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:22:19 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/12 16:42:20 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:21:04 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void zoom(t_coord *coord, t_fdf *data)
 
 void	my_mlx_pixel_put(t_fdf *data, int x, int y, int color)
 {
-	printf("drawing pixel x: %d, y: %d\n",  x, y);
 
 	char	*dst;
 
@@ -51,8 +50,8 @@ void bresenham(t_coord coord, t_fdf *data)
 	float y_coef;
 	float max;
 
-	data->z = data->z_matrix[(int)coord.y][(int)coord.x];
-	data->z1 = data->z_matrix[(int)coord.y1][(int)coord.x1];
+	data->z = data->z_matrix[(int)coord.y][(int)coord.x] * data->coef_z;
+	data->z1 = data->z_matrix[(int)coord.y1][(int)coord.x1] * data->coef_z;
 	zoom(&coord, data);
 	isometric(&coord.x, &coord.y, data->z, data);
 	isometric(&coord.x1, &coord.y1, data->z1, data);
@@ -63,8 +62,8 @@ void bresenham(t_coord coord, t_fdf *data)
 	y_coef /= max;
 	while ((int)(coord.x - coord.x1) || (int)(coord.y - coord.y1))
 	{
-		if (can_i_put_pixel(data, coord.x, coord.y))
-			my_mlx_pixel_put(data, coord.x, coord.y, 0x00ff00);
+		if (can_i_put_pixel(data, coord.x + data->x, coord.y + data->y))
+			my_mlx_pixel_put(data, coord.x + data->x, coord.y + data->y, 0x00FF00);
 		coord.x += x_coef;
 		coord.y += y_coef;
 	}

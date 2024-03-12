@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:39:43 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/12 16:11:57 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:17:08 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ typedef struct s_fdf
 	float	angle_x;
 	int		z;
 	int		z1;
+	int		coef_z;
+	float	x;
+	float	y;
+	float	x1;
+	float	y1;
 	int 	size_map;
 
 	void	*mlx;
