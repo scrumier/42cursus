@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:22:19 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/12 15:42:21 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:42:20 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ static void zoom(t_coord *coord, t_fdf *data)
 	coord->y1 *= data->zoom;
 }
 
-void put_pixel_to_image(int x, int y, int color, t_fdf *data)
+void	my_mlx_pixel_put(t_fdf *data, int x, int y, int color)
 {
-    int index = (y * data->size_line / 4) + x; 
+	printf("drawing pixel x: %d, y: %d\n",  x, y);
 
-    int color_value = mlx_get_color_value(data->mlx, color);
+	char	*dst;
 
-    *(unsigned int *)(data->data_addr + (index * (data->bits_per_pixel / 8))) = color_value;
+	dst = data->data_addr + (y * data->size_line + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }
 
 void bresenham(t_coord coord, t_fdf *data)
@@ -62,7 +63,8 @@ void bresenham(t_coord coord, t_fdf *data)
 	y_coef /= max;
 	while ((int)(coord.x - coord.x1) || (int)(coord.y - coord.y1))
 	{
-		can_i_put_pixel(data, coord.x, coord.y, 0x00ff00);
+		if (can_i_put_pixel(data, coord.x, coord.y))
+			my_mlx_pixel_put(data, coord.x, coord.y, 0x00ff00);
 		coord.x += x_coef;
 		coord.y += y_coef;
 	}

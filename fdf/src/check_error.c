@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:13:15 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/03/12 15:37:48 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:48:25 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,11 @@ void	check_data(t_fdf *data)
 	}
 }
 
-void	my_mlx_pixel_put(t_fdf *data, int x, int y, int color)
+bool can_i_put_pixel(t_fdf *data, int x, int y)
 {
-	char	*dst;
-
-	dst = data->data_addr + (y * data->size_line + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-void can_i_put_pixel(t_fdf *data, int x, int y, int color)
-{
-	if (x + data->coord->x >= 0 && x + data->coord->x < WIDTH 
-			&& y + data->coord->y >= 0 && y + data->coord->y < HEIGHT)
-		my_mlx_pixel_put(data, x + data->coord->x, y + data->coord->y, color);
+	if (x >= 0 && x < WIDTH 
+			&& y >= 0 && y < HEIGHT)
+		return (true);
+	else
+		return (false);
 }

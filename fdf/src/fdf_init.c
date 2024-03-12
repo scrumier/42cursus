@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:57:17 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/03/12 14:24:06 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:24:49 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void    fdf_init(char *file, t_fdf *data)
 
 	data->height = get_height(file); //hauteur
 	data->width = get_width(file); //largeur
-	data->z_matrix = (int **)malloc(sizeof(int *) * data->height + 1);
+	data->z_matrix = ft_calloc( data->height + 1, sizeof(int *));
 	if (!data->z_matrix)
 	{
 		ft_putstr_fd("Error\n", 2);
@@ -83,7 +83,7 @@ void    fdf_init(char *file, t_fdf *data)
 	i = 0;
 	while (i < data->height)
 	{
-		data->z_matrix[i] = (int *)malloc(sizeof(int) * data->width + 1);
+		data->z_matrix[i] = ft_calloc( data->width + 1, sizeof(int));
 		if (data->z_matrix[i] == NULL)
 		{
 			ft_putstr_fd("Error\n", 2);

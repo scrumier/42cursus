@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:27:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/12 15:46:30 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:45:47 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ static int keys(int key, t_fdf *data, t_coord coord)
 		//zoom "-"
 		((t_fdf*)data)->size_map -= 2;
 	}
-	// else if (key == 112)
-	// {
-	// 	//p
-	// 	data->z += 2 * data->size_map;
-	// 	data->z1 += 2 * data->size_map;
-	// }
-	// else if (key == 109)
-	// {
-	// 	//m
-	// 	data->z -= 2 * data->size_map;
-	// 	data->z1 -= 2 * data->size_map;
-	// }
+	else if (key == 112)
+	{
+		//p
+		data->z += 2 * data->size_map;
+		data->z1 += 2 * data->size_map;
+	}
+	else if (key == 109)
+	{
+		//m
+		data->z -= 2 * data->size_map;
+		data->z1 -= 2 * data->size_map;
+	}
 	else if (key == 65361)
 	{
 		//gauche
@@ -137,10 +137,13 @@ int	main(int ac, char **av)
 	t_fdf	*data;
 	t_coord	coord;
 
+	write(1, "u", 1);
 	if (ac != 2)
 		return (ft_putstr_fd("Usage: ./fdf file\n", 2), 1);
 	check_error(av[1]);
-	data = (t_fdf*)malloc(sizeof(t_fdf));
+	data = ft_calloc(1, sizeof(t_fdf));
+	if (!data)
+		exit(2);
 	data->coord = &coord;
 	fdf_init(av[1], data);
 	check_data(data);

@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:39:43 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/12 15:41:34 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:11:57 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 # include "keys.h"
 
 # define WIDTH 1024
@@ -68,6 +69,6 @@ void	free_all(t_fdf *data);
 void	check_error(char *file);
 void	check_data(t_fdf *data);
 int		ft_isnumber(int c);
-void	can_i_put_pixel(t_fdf *data, int x, int y, int color);
+bool	can_i_put_pixel(t_fdf *data, int x, int y);
 
 #endif
