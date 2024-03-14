@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:27:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/12 18:23:13 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:28:01 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 static int keys(int key, t_fdf *data, t_coord coord)
 {
-	printf("key = %d\n", key);
+	//printf("key = %d\n", key);
 	if (key == 65307)
 	{
 		mlx_destroy_image(data->mlx, data->img);
 		mlx_destroy_window(data->mlx, data->win);
 		mlx_destroy_display(data->mlx);
 		free_all(data);
-		exit(EXIT_FAILURE);
+		exit(EXIT_SUCCESS);
 	}
 	else if (key == 61)
 	{
@@ -39,26 +39,26 @@ static int keys(int key, t_fdf *data, t_coord coord)
 	else if (key == 65361)
 	{
 		//gauche
-		data->x -= 10 * data->size_map;
-		data->x1 -= 10 * data->size_map;
+		data->x += 10 * data->size_map;
+		data->x1 += 10 * data->size_map;
 	}
 	else if (key == 65364)
 	{
 		//bas
-		data->y += 10 * data->size_map;
-		data->y1 += 10 * data->size_map;
+		data->y -= 10 * data->size_map;
+		data->y1 -= 10 * data->size_map;
 	}
 	else if (key == 65363)
 	{
 		//droite
-		data->x += 10 * data->size_map;
-		data->x1 += 10 * data->size_map;
+		data->x -= 10 * data->size_map;
+		data->x1 -= 10 * data->size_map;
 	}
 	else if (key == 65362)
 	{
 		//haut
-		data->y -= 10 * data->size_map;
-		data->y1 -= 10 * data->size_map;
+		data->y += 10 * data->size_map;
+		data->y1 += 10 * data->size_map;
 	}
 	else if (key == 119)
 	{
@@ -93,21 +93,23 @@ static int keys(int key, t_fdf *data, t_coord coord)
 	else if (key == 112)
 	{
 		// p heigh
-			data->coef_z += data->size_map;
+		data->coef_z += data->size_map;
 	}
 	else if (key == 109)
 	{
 		// m heigh
-		if (data->coef_z > 1)
-			data->coef_z -= data->size_map;
+		data->coef_z -= data->size_map;
 	}
 	else if (key == 114)
 	{
 		//reset "r"
 		data->zoom = 20;
 		data->size_map = 1;
-		data->angle_x = 0.8;
-		data->angle_y = 0.8;
+		data->angle_x = 0.45;
+		data->angle_y = 0.45;
+		data->coef_z = 1;
+		data->x = 0;
+		data->y = 0;
 	}
 	else
 		return (0);
@@ -149,5 +151,6 @@ int	main(int ac, char **av)
 	draw(data, coord);
 	mlx_key_hook(data->win, keys, data);
 	mlx_loop(data->mlx);
+	mlx_destroy_display(data->mlx);
 	return (0);
 }

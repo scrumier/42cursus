@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:13:15 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/03/12 18:11:49 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:36:46 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,16 @@ void	check_data(t_fdf *data)
 	}
 }
 
-bool can_i_put_pixel(t_fdf *data, int x, int y)
+bool can_i_put_pixel(int x, int y)
 {
     if (x >= 0 && x < HEIGHT && y >= 0 && y < WIDTH)
         return (true);
     else
         return (false);
+}
+
+void	ft_error(char *str)
+{
+	ft_putstr_fd(str, 2);
+	exit(1);
 }

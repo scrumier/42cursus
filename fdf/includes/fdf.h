@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:39:43 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/12 18:17:08 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:28:10 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	free_all(t_fdf *data);
 void	check_error(char *file);
 void	check_data(t_fdf *data);
 int		ft_isnumber(int c);
-bool	can_i_put_pixel(t_fdf *data, int x, int y);
+bool	can_i_put_pixel(int x, int y);
+void	ft_error(char *str);
 
 #endif

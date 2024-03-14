@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:33:28 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/13 14:19:49 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:42:11 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	list = ft_calloc(ft_count_wrds(s, c) + 1, sizeof(char *));
+	list = ft_calloc(ft_count_wrds(s, c), sizeof(char *));
 	if (!list)
 		return (NULL);
 	i = 0;

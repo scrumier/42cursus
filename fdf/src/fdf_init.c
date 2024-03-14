@@ -6,61 +6,55 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:57:17 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/03/12 16:24:49 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:01:59 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static int	get_height(char *file)
-{
-	int		fd;
-	int		height;
+static void get_height_and_width(char *file, t_fdf *data) {
+    int fd;
+    char *line;
+    int current_width;
 
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-	{
-		ft_putstr_fd("Error\n", 2);
-		exit(1);
-	}
-	height = 0;
-	while (get_next_line(fd))
-	{
-		height++;
-	}
-	close(fd);
-	return (height);
-}
-
-static int	get_width(char *file)
-{
-	int		fd;
-	char	*line;
-	int		width;
-
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-	{
-		ft_putstr_fd("Error\n", 2);
-		exit(1);
-	}
+    fd = open(file, O_RDONLY);
 	line = get_next_line(fd);
-	width = ft_countwords(line);
+	if (!line)
+		ft_error("Error: file is empty");
+	data->height = 1;
+	current_width = ft_countwords(line);
+    if (fd == -1)
+        ft_error("Error: file not found");
+    data->height = 0;
+    data->width = 0;
+    while (line != NULL)
+	{
+        free(line);
+		line = get_next_line(fd);
+        (data->height)++;
+        if (current_width > data->width)
+            data->width = current_width;
+    }
 	free(line);
-	close(fd);
-	return (width);
+    close(fd);
 }
 
-static void	fill(int *z_line, char *line)
+static void	fill(int *z_line, char *line, int width)
 {
 	int		i;
 	char	**nbr;
 
 	nbr = ft_split(line, ' ');
+	if (!nbr)
+		ft_error("Malloc failed");
 	i = 0;
-	while (nbr[i + 1])
+	while (i < width)
 	{
-		z_line[i] = ft_atoi(nbr[i]);
+		if (nbr[i] != NULL)
+			z_line[i] = ft_atoi(nbr[i]);
+		else
+			z_line[i] = 0;
+		free(nbr[i]);
 		i++;
 	}
 	free(nbr);
@@ -72,38 +66,27 @@ void    fdf_init(char *file, t_fdf *data)
 	int     i;
 	char    *line;
 
-	data->height = get_height(file); //hauteur
-	data->width = get_width(file); //largeur
-	data->z_matrix = ft_calloc( data->height + 1, sizeof(int *));
+	get_height_and_width(file, data);
+	data->z_matrix = ft_calloc( data->height, sizeof(int *));
 	if (!data->z_matrix)
-	{
-		ft_putstr_fd("Error\n", 2);
-		exit(1);
-	}
+		ft_error("Malloc failed");
 	i = 0;
 	while (i < data->height)
 	{
-		data->z_matrix[i] = ft_calloc( data->width + 1, sizeof(int));
-		if (data->z_matrix[i] == NULL)
-		{
-			ft_putstr_fd("Error\n", 2);
-			exit(1);
-		}
+		data->z_matrix[i] = ft_calloc(data->width, sizeof(int));
+		if (!data->z_matrix[i])
+			ft_error("Malloc failed");
 		i++;
 	}
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		ft_putstr_fd("Error\n", 2);
-		exit(1);
-	}
+		ft_error("Error: file not found");
 	i = 0;
-	line = get_next_line(fd);
-	while (line != NULL)
+	while (i < data->height)
 	{
-		fill(data->z_matrix[i], line);
-		free(line);
 		line = get_next_line(fd);
+		fill(data->z_matrix[i], line, data->width);
+		free(line);
 		i++;
 	}
 	close(fd);
