@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:27:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/15 13:58:45 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:22:31 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,25 @@ void	mlx_in_data(t_fdf *data)
 	data->coef_z = 1;
 }
 
+int handle_no_event(t_fdf *data)
+{
+	(void)data;
+	return (0);
+}
+
+int handle_keypress(int key, t_fdf *data)
+{
+	exec_keys(key, data);
+	return (0);
+}
+
+int handle_keyrelease(int key, t_fdf *data)
+{
+	(void)data;
+	printf("key = %d\n", key);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_fdf	*data;
@@ -35,14 +54,16 @@ int	main(int ac, char **av)
 	check_error(av[1]);
 	data = ft_calloc(1, sizeof(t_fdf));
 	if (!data)
-		exit(2);
+		exit(EXIT_FAILURE);
 	data->coord = &coord;
 	fdf_init(av[1], data);
 	check_data(data);
 	mlx_in_data(data);
 	data->data_addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->size_line, &data->endian);
 	draw(data, coord);
-	mlx_key_hook(data->win, keys, data);
+	mlx_loop_hook(data->mlx, handle_no_event, data);
+	mlx_hook(data->win, KeyPress, KeyPressMask, &handle_keypress, data);
+    mlx_hook(data->win, KeyRelease, KeyReleaseMask, &handle_keyrelease, data);
 	mlx_loop(data->mlx);
 	mlx_destroy_display(data->mlx);
 	return (EXIT_SUCCESS);

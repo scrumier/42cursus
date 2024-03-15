@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 13:58:49 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/15 14:43:41 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:20:08 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void reset(t_fdf *data)
     data->y = 0;
 }
 
-int keys(int key, t_fdf *data, t_coord coord)
+void exec_keys(int key, t_fdf *data)
 {
 	printf("key = %d\n", key);
 	if (key == ESC)
@@ -111,9 +111,8 @@ int keys(int key, t_fdf *data, t_coord coord)
 	else if (key == R)
         reset(data);
 	else
-		return (0);
+		return ;
 	mlx_destroy_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, HEIGHT, WIDTH);
-	draw(data, coord);
-	return (0);
+	draw(data, *(data->coord));
 }

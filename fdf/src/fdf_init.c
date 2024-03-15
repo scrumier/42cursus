@@ -6,36 +6,36 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:57:17 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/03/15 13:47:30 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:53:15 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 static void get_height_and_width(char *file, t_fdf *data) {
-    int fd;
-    char *line;
-    int current_width;
+	int fd;
+	char *line;
+	int current_width;
 
-    fd = open(file, O_RDONLY);
+	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		ft_error("Error: file not found");	
 	line = get_next_line(fd);
 	if (!line)
 		ft_error("Error: file is empty");
 	data->height = 0;
-    data->width = 0;
-    while (line != NULL)
+	data->width = 0;
+	while (line != NULL)
 	{
 		current_width = ft_countwords(line);
-        if (current_width > data->width)
-            data->width = current_width;
-        free(line);
+		if (current_width > data->width)
+			data->width = current_width;
+		free(line);
 		line = get_next_line(fd);
-        (data->height)++;
-    }
+		(data->height)++;
+	}
 	free(line);
-    close(fd);
+	close(fd);
 }
 
 static void	fill(int *z_line, char *line, int width)
@@ -57,6 +57,30 @@ static void	fill(int *z_line, char *line, int width)
 		i++;
 	}
 	free(nbr);
+}
+
+int find_max_z_value(t_fdf *data)
+{
+	int max_z;
+	int i;
+	int j;
+	int z_tmp;
+
+	i = 0;
+	j = 0;
+	max_z = INT_MIN;
+	while (i < data->height)
+	{
+		while (j < data->width)
+		{
+			z_tmp = data->z_matrix[i][j] * data->coef_z;
+			if (z_tmp > max_z)
+				max_z = z_tmp;
+			j++;
+		}
+		i++;
+	}
+	return max_z;
 }
 
 void    fdf_init(char *file, t_fdf *data)
@@ -90,4 +114,5 @@ void    fdf_init(char *file, t_fdf *data)
 	}
 	close(fd);
 	data->size_map = (data->width + data->height) / 2;
+	data->max_z = find_max_z_value(data);
 }
