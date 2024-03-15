@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:39:43 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/14 17:28:10 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/15 14:47:05 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <stdbool.h>
 # include "keys.h"
 
-# define WIDTH 1024
-# define HEIGHT 1024
+# define WIDTH 2048
+# define HEIGHT 3048
 
 typedef struct s_coord
 {
@@ -50,7 +50,7 @@ typedef struct s_fdf
 	float	y;
 	float	x1;
 	float	y1;
-	int 	size_map;
+	float 	size_map;
 
 	void	*mlx;
 	void	*win;
@@ -76,5 +76,6 @@ void	check_data(t_fdf *data);
 int		ft_isnumber(int c);
 bool	can_i_put_pixel(int x, int y);
 void	ft_error(char *str);
+int		keys(int key, t_fdf *data, t_coord coord);
 
 #endif

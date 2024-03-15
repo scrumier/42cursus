@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:57:17 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/03/14 18:01:59 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:47:30 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,21 @@ static void get_height_and_width(char *file, t_fdf *data) {
     int current_width;
 
     fd = open(file, O_RDONLY);
+	if (fd == -1)
+		ft_error("Error: file not found");	
 	line = get_next_line(fd);
 	if (!line)
 		ft_error("Error: file is empty");
-	data->height = 1;
-	current_width = ft_countwords(line);
-    if (fd == -1)
-        ft_error("Error: file not found");
-    data->height = 0;
+	data->height = 0;
     data->width = 0;
     while (line != NULL)
 	{
+		current_width = ft_countwords(line);
+        if (current_width > data->width)
+            data->width = current_width;
         free(line);
 		line = get_next_line(fd);
         (data->height)++;
-        if (current_width > data->width)
-            data->width = current_width;
     }
 	free(line);
     close(fd);

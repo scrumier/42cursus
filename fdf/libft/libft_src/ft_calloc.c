@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:31:58 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/14 14:40:56 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:45:20 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		target = malloc(nmemb * size);
 	if (target == NULL)
 		return (NULL);
-	ft_bzero(target, nmemb * size - 1);
+	ft_bzero(target, nmemb * size);
 	return (target);
 }

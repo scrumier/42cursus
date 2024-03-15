@@ -6,119 +6,12 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:27:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/14 17:28:01 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:58:45 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <stdio.h>
-
-static int keys(int key, t_fdf *data, t_coord coord)
-{
-	//printf("key = %d\n", key);
-	if (key == 65307)
-	{
-		mlx_destroy_image(data->mlx, data->img);
-		mlx_destroy_window(data->mlx, data->win);
-		mlx_destroy_display(data->mlx);
-		free_all(data);
-		exit(EXIT_SUCCESS);
-	}
-	else if (key == 61)
-	{
-		//zoom "="
-		((t_fdf*)data)->size_map += 2;
-		return (0);
-	}
-	else if (key == 45)
-	{
-		//zoom "-"
-		((t_fdf*)data)->size_map -= 2;
-		return (0);
-	}
-	else if (key == 65361)
-	{
-		//gauche
-		data->x += 10 * data->size_map;
-		data->x1 += 10 * data->size_map;
-	}
-	else if (key == 65364)
-	{
-		//bas
-		data->y -= 10 * data->size_map;
-		data->y1 -= 10 * data->size_map;
-	}
-	else if (key == 65363)
-	{
-		//droite
-		data->x -= 10 * data->size_map;
-		data->x1 -= 10 * data->size_map;
-	}
-	else if (key == 65362)
-	{
-		//haut
-		data->y += 10 * data->size_map;
-		data->y1 += 10 * data->size_map;
-	}
-	else if (key == 119)
-	{
-		//rotate y "w"
-		data->angle_y += 0.1;
-	}
-	else if (key == 97)
-	{
-		//rotate x "a"
-		data->angle_x += 0.1;
-	}
-	else if (key == 115)
-	{
-		//rotate y "s"
-		data->angle_y -= 0.1;
-	}
-	else if (key == 100)
-	{
-		//rotate x "d"
-		data->angle_x -= 0.1;
-	}
-	else if (key == 65451)
-	{
-		//zoom "+"
-		data->zoom += 1 * data->size_map;
-	}
-	else if (key == 65453)
-	{
-		//zoom "-"
-		data->zoom -= 1 * data->size_map;
-	}
-	else if (key == 112)
-	{
-		// p heigh
-		data->coef_z += data->size_map;
-	}
-	else if (key == 109)
-	{
-		// m heigh
-		data->coef_z -= data->size_map;
-	}
-	else if (key == 114)
-	{
-		//reset "r"
-		data->zoom = 20;
-		data->size_map = 1;
-		data->angle_x = 0.45;
-		data->angle_y = 0.45;
-		data->coef_z = 1;
-		data->x = 0;
-		data->y = 0;
-	}
-	else
-		return (0);
-	mlx_destroy_image(data->mlx, data->img);
-	mlx_clear_window(data->mlx, data->win);
-	data->img = mlx_new_image(data->mlx, HEIGHT, WIDTH);
-	draw(data, coord);
-	return (0);
-}
 
 void	mlx_in_data(t_fdf *data)
 {
@@ -152,5 +45,5 @@ int	main(int ac, char **av)
 	mlx_key_hook(data->win, keys, data);
 	mlx_loop(data->mlx);
 	mlx_destroy_display(data->mlx);
-	return (0);
+	return (EXIT_SUCCESS);
 }
