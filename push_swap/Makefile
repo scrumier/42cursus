@@ -6,7 +6,7 @@
 #    By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/28 23:46:53 by sonamcrumie       #+#    #+#              #
-#    Updated: 2024/02/26 13:23:59 by scrumier         ###   ########.fr        #
+#    Updated: 2024/03/15 12:46:54 by scrumier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJ_DIR = obj/
 SRC_DIR = src/
 SRC_1 = instructions1.c instructions2.c instructions3.c main.c radix.c \
 		sort_five.c sort_five_bis.c utils.c t_list.c index.c check_args.c \
-		free_list.c check_double.c
+		free_list.c
 
 OBJ_1 = $(addprefix $(OBJ_DIR), $(SRC_1:.c=.o))
 
@@ -36,7 +36,7 @@ $(OBJ_DIR):
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
 	$(CC) $(FLAGS) $(LIBFT_INC) -c $< -o $@
 
-$(NAME): $(OBJ_1) $(LIBFT)
+$(NAME): $(OBJ_1) $(LIBFT) FORCE
 	$(CC) $(FLAGS) $(OBJ_1) -o $(NAME) $(LIBFT_LINK)
 
 $(LIBFT): FORCE

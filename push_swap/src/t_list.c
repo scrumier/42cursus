@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:55:49 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/15 13:27:03 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:46:46 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list	*ft_lstnew(int value)
 {
 	t_list	*new;
 
-	new = (t_list *) malloc(sizeof(*new));
+	new = malloc(sizeof(*new));
 	if (!new)
 		return (NULL);
 	new->value = value;

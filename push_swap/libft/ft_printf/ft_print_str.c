@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_double.c                                     :+:      :+:    :+:   */
+/*   ft_print_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 11:40:10 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/26 14:07:28 by scrumier         ###   ########.fr       */
+/*   Created: 2023/11/20 13:17:13 by sonamcrumie       #+#    #+#             */
+/*   Updated: 2024/03/15 12:54:59 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "ft_printf.h"
 
-void	check_double(t_list **list)
+int	ft_print_str(char *str)
 {
-	t_list	*head;
-	t_list	*tmp;
+	int	count;
 
-	head = *list;
-	while (head)
+	count = 0;
+	if (str == NULL)
 	{
-		tmp = head->next;
-		while (tmp)
-		{
-			if (head->value == tmp->value)
-				ft_error("Error", list, NULL);
-			tmp = tmp->next;
-		}
-		head = head->next;
+		if (write(1, "(null)", 6) < 0)
+			return (-1);
+		return (6);
 	}
+	while (*str)
+	{
+		if (ft_print_char(*str++) < 0)
+			return (-1);
+		count++;
+	}
+	return (count);
 }

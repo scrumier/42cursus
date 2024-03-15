@@ -6,14 +6,14 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:31:06 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/26 14:05:31 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:05:06 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../libft/libft_src/libft.h"
+# include "libft.h"
 
 typedef struct s_list
 {
@@ -29,12 +29,13 @@ void	ft_lstadd_back(t_list **list, t_list *new);
 void	ft_lstadd_front(t_list **list, t_list *new);
 
 void	ft_free(char **str);
-void	free_all(t_list **list_a, t_list **list_b);
+int		count_nbr(char *arg);
 void	free_list(t_list *list);
 int		is_sorted(t_list **list);
-void	check_double(t_list **list);
+void 	ft_error_args(char *str, char **arg);
 void	ft_check_args(int argc, char **argv);
 int		get_distance(t_list **list, int index);
+void	free_all(t_list **list_a, t_list **list_b);
 void	ft_error(char *msg, t_list **a, t_list **b);
 void	make_top(t_list **list_a, t_list **list_b, int distance);
 

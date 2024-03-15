@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:38:03 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/28 17:44:05 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:07:05 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,42 @@
 
 void	ft_error(char *msg, t_list **a, t_list **b)
 {
-	if (*a)
+	if (a && *a)
+	{
 		free_list(*a);
-	if (a)
 		free(a);
-	if (*b)
+	}
+	if (b && *b)
+	{
 		free_list(*b);
-	if (b)
 		free(b);
+	}
 	ft_putendl_fd(msg, 2);
-	exit(0);
+	exit(EXIT_FAILURE);
 }
 
-void	ft_free(char **str)
+int	count_nbr(char *arg)
 {
 	int	i;
+	int	count;
 
 	i = 0;
-	while (str[i])
-		free(str[i++]);
-	free(str);
+	count = 0;
+	while (arg[i])
+	{
+		if (ft_isdigit(arg[i]) || arg[i] == '-' || arg[i] == '+')
+		{
+			count++;
+			i++;
+			while (ft_isdigit(arg[i]))
+				i++;
+		}
+		else
+			i++;
+	}
+	if (count < 2)
+		ft_error("", NULL, NULL);
+	return (count);
 }
 
 int	is_sorted(t_list **list)
