@@ -6,16 +6,17 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:57:17 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/03/15 15:53:15 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/19 14:32:07 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void get_height_and_width(char *file, t_fdf *data) {
-	int fd;
-	char *line;
-	int current_width;
+static void	get_height_and_width(char *file, t_fdf *data)
+{
+	int		fd;
+	char	*line;
+	int		current_width;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
@@ -50,21 +51,21 @@ static void	fill(int *z_line, char *line, int width)
 	while (i < width)
 	{
 		if (nbr[i] != NULL)
-			z_line[i] = ft_atoi(nbr[i]);
+			z_line[i] = ft_atoi(nbr[i]) - GROUND;
 		else
-			z_line[i] = 0;
+			z_line[i] = GROUND;
 		free(nbr[i]);
 		i++;
 	}
 	free(nbr);
 }
 
-int find_max_z_value(t_fdf *data)
+static int	find_max_z_value(t_fdf *data)
 {
-	int max_z;
-	int i;
-	int j;
-	int z_tmp;
+	int	max_z;
+	int	i;
+	int	j;
+	int	z_tmp;
 
 	i = 0;
 	j = 0;
@@ -73,21 +74,39 @@ int find_max_z_value(t_fdf *data)
 	{
 		while (j < data->width)
 		{
-			z_tmp = data->z_matrix[i][j] * data->coef_z;
+			z_tmp = data->z_matrix[i][j] - GROUND;
 			if (z_tmp > max_z)
 				max_z = z_tmp;
 			j++;
 		}
 		i++;
 	}
-	return max_z;
+	return (max_z);
 }
 
-void    fdf_init(char *file, t_fdf *data)
+void fill_z_matrix(char *file, t_fdf *data, int height)
 {
-	int     fd;
-	int     i;
-	char    *line;
+	int	fd;
+    int i = 0;
+    char *line;
+
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		ft_error("Error: file not found");
+    while (i < height)
+	{
+        line = get_next_line(fd);
+        fill(data->z_matrix[i], line, data->width);
+        free(line);
+        i++;
+    }
+	close(fd);
+}
+
+void	fdf_init(char *file, t_fdf *data)
+{
+	
+	int		i;
 
 	get_height_and_width(file, data);
 	data->z_matrix = ft_calloc( data->height, sizeof(int *));
@@ -101,18 +120,7 @@ void    fdf_init(char *file, t_fdf *data)
 			ft_error("Malloc failed");
 		i++;
 	}
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		ft_error("Error: file not found");
-	i = 0;
-	while (i < data->height)
-	{
-		line = get_next_line(fd);
-		fill(data->z_matrix[i], line, data->width);
-		free(line);
-		i++;
-	}
-	close(fd);
+	fill_z_matrix(file, data, data->height);
 	data->size_map = (data->width + data->height) / 2;
 	data->max_z = find_max_z_value(data);
 }

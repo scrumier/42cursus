@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:22:19 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/15 16:03:32 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/19 14:44:06 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static float	absolute(float nbr)
 
 static void zoom(t_coord *coord, t_fdf *data)
 {
-	// Apply zoom
 	coord->x *= data->zoom;
 	coord->y *= data->zoom;
 	coord->x1 *= data->zoom;
@@ -44,37 +43,11 @@ void	my_mlx_pixel_put(t_fdf *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-t_color interpolate_color(t_color start, t_color end, float ratio)
-{
-    t_color result;
-
-    result.red = start.red + (int)((end.red - start.red) * ratio);
-    result.green = start.green + (int)((end.green - start.green) * ratio);
-    result.blue = start.blue + (int)((end.blue - start.blue) * ratio);
-    result.alpha = start.alpha + (int)((end.alpha - start.alpha) * ratio);
-    return (result);
-}
-
-t_color calculate_color(t_fdf *data)
-{
-    float ratio;
-    t_color start_color;
-    t_color end_color;
-
-	start_color = (t_color){0, 0, 255, 0};
-	end_color = start_color;
-	ratio = (data->z + data->z1) / 2.0f / data->max_z;
-    return (interpolate_color(start_color, end_color, ratio));
-}
-
-
 void bresenham(t_coord coord, t_fdf *data)
 {
 	float	x_coef;
 	float	y_coef;
 	float	max;
-	int		int_color;
-	t_color color;
 
 	data->z = data->z_matrix[(int)coord.y][(int)coord.x] * data->coef_z;
 	data->z1 = data->z_matrix[(int)coord.y1][(int)coord.x1] * data->coef_z;
@@ -88,10 +61,8 @@ void bresenham(t_coord coord, t_fdf *data)
 	y_coef /= max;
 	while ((int)(coord.x - coord.x1) || (int)(coord.y - coord.y1))
 	{
-		color = calculate_color(data);
-		int_color = ((color.red & 0xFF) << 16) | ((color.green & 0xFF) << 8) | (color.blue & 0xFF);
 		if (can_i_put_pixel(coord.x + data->x, coord.y + data->y))
-			my_mlx_pixel_put(data, coord.x + data->x, coord.y + data->y, int_color);
+			my_mlx_pixel_put(data, coord.x + data->x, coord.y + data->y, 0xFF00FF);
 		coord.x += x_coef;
 		coord.y += y_coef;
 	}
