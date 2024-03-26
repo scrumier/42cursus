@@ -6,11 +6,11 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:33:28 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/14 17:42:11 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:29:47 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../libft.h"
 
 static char	**ft_free_array(char **array, size_t nb_wrd)
 {

@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:27:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/19 14:48:43 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:13:10 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,12 @@ int	main(int ac, char **av)
 	fdf_init(av[1], data);
 	check_data(data);
 	mlx_in_data(data);
-	data->data_addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->size_line, &data->endian);
+	data->data_addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
+				&data->size_line, &data->endian);
 	draw(data, coord);
 	mlx_loop_hook(data->mlx, handle_no_event, data);
 	mlx_hook(data->win, KeyPress, KeyPressMask, &handle_keypress, data);
-    mlx_hook(data->win, KeyRelease, KeyReleaseMask, &handle_keyrelease, data);
+	mlx_hook(data->win, KeyRelease, KeyReleaseMask, &handle_keyrelease, data);
 	mlx_loop(data->mlx);
 	mlx_destroy_display(data->mlx);
 	return (0);

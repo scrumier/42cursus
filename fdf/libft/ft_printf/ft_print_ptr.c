@@ -6,11 +6,11 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:25:06 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/13 14:24:02 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:28:23 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "../ft_printf.h"
 
 static int	ft_puthex(unsigned long num)
 {

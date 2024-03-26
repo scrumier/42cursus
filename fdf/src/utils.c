@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:25:59 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/19 14:45:41 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:13:45 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int	ft_isnumber(int c)
 	return (0);
 }
 
-int ft_countwords(char *s)
+int	ft_countwords(char *s)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;

@@ -6,11 +6,11 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:32:27 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/02/13 14:23:59 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:28:14 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "../ft_printf.h"
 
 static int	ft_puthex_recursive(unsigned int num, const char *base, int *count)
 {

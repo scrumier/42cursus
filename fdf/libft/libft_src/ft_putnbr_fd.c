@@ -6,11 +6,11 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:33:24 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/13 14:19:47 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:29:42 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../libft.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {

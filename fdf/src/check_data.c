@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:35:39 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/19 14:43:48 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:26:35 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,17 @@ void	check_dimensions(t_fdf *data)
 	}
 }
 
-void	check_range(t_fdf *data) {
+void	check_range(t_fdf *data)
+{
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < data->height) {
+	while (i < data->height)
+	{
 		j = 0;
-		while (j < data->width) {
+		while (j < data->width)
+		{
 			if (data->z_matrix[i][j] < -100 || data->z_matrix[i][j] > 500)
 				ft_error("Error: map too high/low\n");
 			j++;
@@ -45,7 +48,8 @@ void	check_range(t_fdf *data) {
 	}
 }
 
-void	check_data(t_fdf *data) {
+void	check_data(t_fdf *data)
+{
 	if (data->height < 2 || data->width < 2)
 		ft_error("Error: map too small (minimum 2x2)\n");
 	check_dimensions(data);

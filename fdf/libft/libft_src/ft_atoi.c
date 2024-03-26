@@ -6,11 +6,11 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:10:05 by scrumier          #+#    #+#             */
-/*   Updated: 2024/02/28 16:13:04 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:28:58 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../libft.h"
 
 long	ft_atoi(const char *nptr)
 {

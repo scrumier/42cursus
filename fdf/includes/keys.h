@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/12 15:18:13 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/03/15 14:25:29 by scrumier         ###   ########.fr       */
+/*   Created: 2024/03/25 18:30:02 by scrumier          #+#    #+#             */
+/*   Updated: 2024/03/25 18:32:58 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYCODES_H
-# define KEYCODES_H
+#ifndef KEYS_H
+# define KEYS_H
 
 # define ESC 65307
 # define PLUS 61

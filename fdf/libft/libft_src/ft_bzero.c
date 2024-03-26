@@ -6,11 +6,11 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:31:52 by scrumier          #+#    #+#             */
-/*   Updated: 2024/03/14 14:36:05 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:29:09 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
